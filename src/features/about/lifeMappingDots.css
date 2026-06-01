@@ -1,0 +1,353 @@
+/**
+ * Life Mapping “dot network” block — flat white surface, no texture (scoped under `.about-life-mapping`).
+ */
+
+.about-life-mapping-shell {
+  width: 100%;
+  position: relative;
+}
+
+.about-life-mapping {
+  --lm-paper: #ffffff;
+  --lm-ink-black: #000000;
+  --lm-ink-faded: rgba(204, 121, 38, 0.15);
+  --lm-ink-medium: rgba(28, 27, 26, 0.4);
+  --lm-accent-rust: #2a9da3;
+  /** Clicked/pinned node accent color */
+  --lm-accent-click: #2a9da3;
+  --lm-accent-fade: rgba(249, 255, 65, 0.2);
+  --lm-font-hand: 'Caveat', cursive;
+  --lm-font-serif: var(--font-serif);
+  --lm-font-sans: var(--font-sans);
+  --lm-transition-smooth: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+  position: relative;
+  width: 100%;
+  min-height: min(92vh, 900px);
+  margin-top: var(--space-xl);
+  background: var(--lm-paper);
+  color: var(--lm-ink-black);
+  overflow: hidden;
+  cursor: none;
+}
+
+.about-life-mapping *,
+.about-life-mapping *::before,
+.about-life-mapping *::after {
+  cursor: none;
+}
+
+.about-life-mapping .life-mapping-cursor-dot,
+.about-life-mapping .life-mapping-cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.about-life-mapping .life-mapping-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--lm-ink-black);
+  transition:
+    width 0.2s,
+    height 0.2s,
+    background-color 0.2s;
+}
+
+.about-life-mapping .life-mapping-cursor-circle {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--lm-ink-medium);
+  transition:
+    width 0.3s,
+    height 0.3s,
+    opacity 0.3s;
+  opacity: 0;
+}
+
+.about-life-mapping:hover .life-mapping-cursor-circle {
+  opacity: 1;
+}
+
+.about-life-mapping.life-mapping--cursor-hover .life-mapping-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--lm-accent-rust);
+}
+
+.about-life-mapping.life-mapping--cursor-hover .life-mapping-cursor-circle {
+  width: 50px;
+  height: 50px;
+  border-color: var(--lm-accent-rust);
+  background-color: var(--lm-accent-fade);
+}
+
+.about-life-mapping .life-mapping-ambient-quote {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  font-family: var(--lm-font-hand);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--lm-ink-medium);
+  transform: rotate(-2deg);
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+  max-width: min(400px, 86vw);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.about-life-mapping .life-mapping-network-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: block;
+}
+
+.about-life-mapping .life-mapping-network-canvas path.link {
+  fill: none;
+  stroke: var(--lm-ink-faded);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transition:
+    stroke var(--lm-transition-smooth),
+    stroke-width var(--lm-transition-smooth),
+    stroke-opacity var(--lm-transition-smooth);
+}
+
+.about-life-mapping .life-mapping-network-canvas path.link.active {
+  stroke: var(--lm-ink-black);
+  stroke-width: 2.5;
+  stroke-opacity: 0.8;
+}
+
+.about-life-mapping .life-mapping-network-canvas path.link.path-history {
+  stroke: var(--lm-accent-rust);
+  stroke-width: 2;
+  stroke-opacity: 0.6;
+}
+
+.about-life-mapping .life-mapping-network-canvas path.link.dimmed {
+  stroke-opacity: 0.05;
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node circle:not(.hitbox) {
+  fill: var(--lm-ink-black);
+  transition:
+    r 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    fill 0.3s;
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node:hover circle:not(.hitbox),
+.about-life-mapping .life-mapping-network-canvas g.node.active circle:not(.hitbox),
+.about-life-mapping .life-mapping-network-canvas g.node.label-pinned circle:not(.hitbox) {
+  fill: var(--lm-accent-click);
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node:hover circle:not(.hitbox) {
+  fill: var(--lm-accent-rust);
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node text {
+  font-family: var(--lm-font-sans);
+  /** 1.8× labels, then scaled down to 80% */
+  font-size: 15.84px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  fill: var(--lm-ink-medium);
+  opacity: 0;
+  transition:
+    opacity var(--lm-transition-smooth),
+    transform var(--lm-transition-smooth);
+  pointer-events: none;
+}
+
+/** English labels are longer — keep Chinese size, shrink EN to 80% */
+html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
+  font-size: calc(15.84px * 0.8);
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node:hover text,
+.about-life-mapping .life-mapping-network-canvas g.node.active text,
+.about-life-mapping .life-mapping-network-canvas g.node.label-pinned text {
+  opacity: 1;
+  transform: translateY(-5px);
+  fill: var(--lm-ink-black);
+}
+
+.about-life-mapping .life-mapping-network-canvas g.node .hitbox {
+  fill: transparent;
+}
+
+/* Detail drawer — white surface, no page overlay */
+.life-mapping-detail-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: min(450px, 100vw);
+  background: rgba(220, 229, 227, 0.6);
+  backdrop-filter: blur(5px) saturate(80%);
+  -webkit-backdrop-filter: blur(7px) saturate(80%);
+  border-left: 1px solid rgba(72, 69, 60, 0.08);
+  padding: 60px;
+  transform: translateX(100%);
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 50;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.04);
+  cursor: auto;
+  /** Hide scrollbar but keep scroll available */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+}
+
+.life-mapping-detail-panel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.life-mapping-detail-panel *,
+.life-mapping-detail-panel *::before,
+.life-mapping-detail-panel *::after {
+  cursor: auto;
+}
+
+.life-mapping-detail-panel.life-mapping-detail-panel--open {
+  transform: translateX(0);
+}
+
+.life-mapping-detail-panel .life-mapping-detail-meta {
+  font-family: var(--lm-font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lm-accent-rust);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.life-mapping-detail-panel .life-mapping-detail-meta::after {
+  content: '';
+  height: 1px;
+  flex-grow: 1;
+  background: var(--lm-accent-fade);
+}
+
+.life-mapping-detail-panel .life-mapping-detail-title {
+  font-family: var(--lm-font-hand);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--lm-ink-black);
+  margin: 0 0 2rem;
+  font-weight: 500;
+}
+
+.life-mapping-detail-panel .life-mapping-detail-body {
+  font-family: var(--lm-font-serif);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--lm-ink-black);
+}
+
+.life-mapping-detail-panel .life-mapping-detail-body p {
+  margin: 0 0 1.5rem;
+}
+
+.life-mapping-detail-panel .life-mapping-detail-connections {
+  margin-top: auto;
+  padding-top: 3rem;
+  border-top: 1px solid var(--lm-ink-faded);
+}
+
+.life-mapping-detail-panel .life-mapping-detail-connections-title {
+  font-family: var(--lm-font-sans);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lm-ink-medium);
+  margin-bottom: 1rem;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-item {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-item:hover,
+.life-mapping-detail-panel .life-mapping-connection-item:focus-within {
+  opacity: 1;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-link {
+  font-family: var(--lm-font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--lm-ink-black);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-link:focus-visible {
+  outline: 2px solid var(--lm-accent-rust);
+  outline-offset: 2px;
+}
+
+.life-mapping-detail-panel .life-mapping-connection-item::before {
+  content: '→';
+  margin-right: 10px;
+  color: var(--lm-accent-rust);
+  font-style: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-life-mapping .life-mapping-network-canvas path.link,
+  .about-life-mapping .life-mapping-network-canvas g.node circle:not(.hitbox),
+  .about-life-mapping .life-mapping-network-canvas g.node text,
+  .life-mapping-detail-panel {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-life-mapping .life-mapping-ambient-quote {
+    top: 24px;
+    left: 24px;
+    font-size: 1.45rem;
+  }
+
+  .life-mapping-detail-panel {
+    padding: 48px 28px;
+  }
+}

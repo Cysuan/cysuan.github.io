@@ -1,0 +1,382 @@
+{
+  "site": {
+    "logo": "Xuan.",
+    "pageTitle": "Xuan — 蔡思源"
+  },
+  "a11y": {
+    "language": "选择语言"
+  },
+  "lang": {
+    "en": "EN",
+    "zh": "中文"
+  },
+  "profile": {
+    "name": "Siyuan",
+    "bio": "你好！我叫蔡思源\n喜欢开阔的景色，喜欢骑车吹风，喜欢冒险，喜欢意外发现 ✨",
+    "portraitAlt": "蔡思源肖像"
+  },
+  "quote": {
+    "side": "与人工作，是价值的交换，各取所需，\n但在本质上是信善和行善。"
+  },
+  "tabs": {
+    "resume": "履历",
+    "about": "关于",
+    "paintings": "绘画"
+  },
+  "about": {
+    "longBio": "我平时很喜欢打扫房间、画油画、做菜，周末会出门散步、骑车吹风，或者打一场大汗淋漓的羽毛球。喜欢搞笑，喜欢所有好玩好笑的创意。",
+    "photoAlt": "照片",
+    "lifeMapping": {
+      "sectionAria": "可交互的人生时间线图示",
+      "ambientLine1": "You can't connect the dots looking forward；",
+      "ambientLine2": "you can only connect them looking backward.",
+      "heading": "Dots.",
+      "subheading": "一段经历的星图",
+      "ledTo": "引向",
+      "closePanel": "关闭详情",
+      "type": {
+        "life": "生活",
+        "learn": "学习",
+        "work": "工作"
+      }
+    },
+    "dotsPhilosophy": {
+      "title": "关于「把点连起来」",
+      "connectingDotsPhrase": "Connecting the dots",
+      "connectingDotsAttribution": "—— 史蒂夫·乔布斯",
+      "connectingDotsHoverSegments": [
+        "很多经历在当下看起来是分散没用的，",
+        "但只有在回头看时，",
+        "才会发现它们其实连在一起、指向一个结果。"
+      ],
+      "paragraphs": [
+        "我特别喜欢乔布斯 {{connectingDots}} 的说法。",
+        "所以自我介绍我想从我经历过的那些 Dots 出发，借由那些印象深刻的经历、兴奋点和火花去重新认识自己。同时非常好奇有一天回望时，那些 Dots 会连成什么样的形态，是线，或网，或一条河流分岔再汇合？",
+        "Connecting the dots 的概念也改变了我看待事情的角度。我相信生命中绝大部分的 Dots 是没有附带说明书的，它们仅仅是被我相信、被我喜欢、被我经历着。而那些暂时派不上用场的热爱或冲动，也会在未来的某天找到位置。我正在学着更具开放性地平视每一个 Dot，看到所有经历中更积极的一面，尝试去理解经历之间的关联。"
+      ]
+    }
+  },
+  "social": {
+    "row": {
+      "x": "@siuan_c",
+      "jike": "@菜悬",
+      "xiaohongshu": "@摇滚菜芯",
+      "bonjour": "@菜悬"
+    },
+    "aria": {
+      "x": "X（Twitter）账号 siuan_C",
+      "jike": "即刻 @菜悬",
+      "xiaohongshu": "小红书 @摇滚菜芯",
+      "bonjour": "bonjour @菜悬（无外链）"
+    }
+  },
+  "panels": {
+    "resume": {
+      "lead": "履历内容将展示于此。"
+    },
+    "about": {
+      "lead": "更详细的介绍敬请期待。"
+    },
+    "paintings": {
+      "lead": "习作与作品将展示于此。"
+    }
+  },
+  "paintings": {
+    "sectionAria": "绘画作品集",
+    "heroLead": "",
+    "modal": {
+      "medium": "媒介",
+      "dimensions": "尺寸",
+      "year": "年份",
+      "availability": "状态",
+      "availabilityValue": "咨询",
+      "close": "关闭"
+    },
+    "fullTitle": "油画作品集（完整版）",
+    "fullLead": "此处将呈现更完整的油画作品与独立版式，具体设计随后补充。",
+    "fullBack": "返回绘画概览"
+  },
+  "resume": {
+    "sectionAria": "履历归档页面布局",
+    "brand": { "line1": "蔡", "line2": "思源" },
+    "meta": {
+      "aria": "联系与偏好信息",
+      "email": "邮箱",
+      "wechat": "微信",
+      "jobPreference": "求职偏好",
+      "branding": "技术品牌"
+    },
+    "contactValues": {
+      "jobPreference": "内容方向",
+      "branding": "技术品牌与传播"
+    },
+    "nav": {
+      "aria": "履历分区导航",
+      "education": "教育背景",
+      "professional": "工作经历"
+    },
+    "index": { "aria": "系统索引", "col1": "索引", "col2": "索引" },
+    "sections": {
+      "education": "教育背景",
+      "professional": "工作经历"
+    },
+    "kicker": {
+      "academic": "[ 教育背景 ]",
+      "professional": "[ 工作经历 ]"
+    },
+    "tagsAria": "技能与方向标签",
+    "behindCv": {
+      "button": "[ 简历背后 ]",
+      "backToCv": "[ 回到简历 ]",
+      "sortAria": "背后叙事条目排序",
+      "sortTimeline": "按照时间线排序",
+      "sortDefault": "默认顺序",
+      "buttonTooltip": "欢迎打开履历的背面。",
+      "emptyPlaceholder": "（此段经历的「背后」叙述待补充。）",
+      "galleryUi": {
+        "stripAria": "背后叙事图片浏览",
+        "lightboxAria": "查看大图",
+        "prev": "上一张",
+        "next": "下一张",
+        "close": "关闭"
+      },
+      "stories": {
+        "education": {
+          "edu-02": {
+            "paragraphs": [
+              "在离家两站地铁的地方读研。",
+              "一年级，课业和项目排山倒海，ddl 应接不暇，充实中也很幸运参与了导师书著中一个章节的编写，享受那段时间一心一意阅读和写作；二年级，在浙江省规划院实习，杭州生活给我带来很多新奇的体验，认识新朋友，体验美食荒漠，理解无辣餐饮，原来辣不是食物的底色，也不是所有人的默认选项，离开川渝，才意识到自己的辣味霸权主义；三年级，全力投入毕业论文生产，为写论文流泪焦灼，为找工作求神拜佛。",
+              "这三年没有宏大的转折，只是慢慢学习、工作、找好玩的事做，找到一些爱好，认识了很多好朋友，更了解自己，开始看见社会。"
+            ]
+          },
+          "edu-01": {
+            "paragraphs": [
+              "我在都江堰开启大学时代。",
+              "大学的课程作业大部分是团队协作，学习绘图、调研、汇报。借此机会走访了一些乡村田野，再一起熬夜赶项目。真正认识的，是蔬菜大棚、农家老舍、臭水沟、村民的生活和油菜花田。课外也加入学生会和社团，一起做了些新媒体方面的尝试和书写，觉得好玩。",
+              [
+                {
+                  "type": "text",
+                  "text": "在四年的课程与实践，从空间设计到内容表达，感觉「讲述一个复杂世界、描述某种图景」的事情是有趣的。这份"
+                },
+                {
+                  "type": "link",
+                  "text": "作品集",
+                  "href": "https://tools.pdf24.org/zh/pdf-preview#url=https%3A%2F%2Ffiletools6.pdf24.org%2Fclient.php%3Fmode%3Dinline%26file%3DjoinPdf_zfzyhdgexsqprtdjjd3sbtrjj5_10190233423302273114.pdf%26action%3DgetFile"
+                },
+                { "type": "text", "text": "记录了这个阶段的探索。" }
+              ]
+            ]
+          }
+        },
+        "experience": {
+          "exp-04": {
+            "paragraphs": [
+              "在AI资讯项目中，我需要关注国内外 AI 信息源，从中文公众号与行业快讯，到 YouTube 深度播客、研究员技术博客、Substack 与各类 Newsletter，筛选、判断与整理信息流。我很享受这样的“内容寻宝”。",
+              "在稍后阅读工具小组里，我更多参与用户侧运营，感恩互联网的因缘际会，用户增长过程我也因此认识了一群长期保持联系的用户朋友。我想产品运营不仅是功能迭代，也需要寻找更自然、更有人感的沟通方式。"
+            ]
+          },
+          "exp-02": {
+            "paragraphs": [
+              "毕业后，从南到北，来到五道口，在面壁开启人生的第一份工作。",
+              "在 AI 密度最高的宇宙中心，为清华实验室的论文成果做技术传播，跟进公司发布会，对接媒体人，运营开源社区，在国家实验室见证大模型项目的推进。身边总是围绕着最聪明、最自信的那拨年轻人。"
+            ],
+            "gallery": [
+              {
+                "src": "/resume/behind/exp-02/01-ai-conference.png",
+                "alt": "带小钢炮参加人工智能大会",
+                "caption": "带小钢炮参加人工智能大会",
+                "aspectRatio": 1.33
+              },
+              {
+                "src": "/resume/behind/exp-02/02-openbmb-award.png",
+                "alt": "OpenBMB 开源创新榜单领奖",
+                "caption": "OpenBMB 开源创新榜单领奖（我在中间）",
+                "aspectRatio": 1.5
+              },
+              {
+                "src": "/resume/behind/exp-02/03-llm-course.png",
+                "alt": "大模型公开课录制现场",
+                "caption": "大模型公开课录制现场",
+                "aspectRatio": 1.33
+              },
+              {
+                "src": "/resume/behind/exp-02/04-ai-pet-meetup.png",
+                "alt": "AI 萌宠线下 meet up",
+                "caption": "AI 萌宠线下 meet up",
+                "aspectRatio": 1.2
+              },
+              {
+                "src": "/resume/behind/exp-02/05-nlp-annual.png",
+                "alt": "清华 NLP 实验室年会筹办",
+                "caption": "清华 NLP 实验室年会筹办",
+                "aspectRatio": 1.4
+              },
+              {
+                "src": "/resume/behind/exp-02/06-modelbest-annual.png",
+                "alt": "面壁年会",
+                "caption": "面壁年会",
+                "aspectRatio": 1.5
+              },
+              {
+                "src": "/resume/behind/exp-02/07-lab-reunion.png",
+                "alt": "实验室师长重聚对谈",
+                "caption": "实验室师长重聚对谈",
+                "aspectRatio": 1.33
+              }
+            ]
+          }
+        }
+      }
+    },
+    "entries": {
+      "experience": {
+        "exp-04": {
+          "range": "2025.7—2026.4",
+          "location": "北京",
+          "title": "迅雷【内容运营 & 产品运营】",
+          "titleSegments": [
+            { "type": "link", "text": "迅雷", "href": "https://www.xunlei.com/" },
+            { "type": "text", "text": "【内容运营&产品运营】" }
+          ],
+          "workBlocks": [
+            {
+              "heading": "AI资讯平台 - 内容运营（aka AI内容寻宝）",
+              "body": "参与一款 AI 资讯内容平台的建设，负责内容侧的搭建，为平台内容质量把关。\n明确内容基调，迭代内容形态（文字资讯、音视频、社交媒体），建立筛选标准与判断框架；追踪筛选国内外高质量 AI 信息源， 建立稳定信息获取网络。"
+            },
+            {
+              "heading": "稍后阅读工具 - 产品、用户运营",
+              "body": "参与AI版稍后阅读工具的运营，负责产品冷启动和文案输出。\n完成首批种子用户获取，承接用户反馈，推动需求整理与产品迭代，建立用户沟通与反馈闭环机制；同时负责品牌内容输出和产品表达支持"
+            }
+          ],
+          "tags": ["内容sense","AI 信息源","产品冷启","种子用户获取","品牌文案"]
+        },
+        "exp-02": {
+          "range": "2023.10—2025.4",
+          "location": "北京",
+          "title": "面壁智能 & 清华 NLP 实验室【AI 技术内容运营 + 开源社区运营】",
+          "titleSegments": [
+            { "type": "link", "text": "面壁智能 ", "href": "https://modelbest.cn/" },
+            { "type": "text", "text": "&" },
+            { "type": "link", "text": " 清华 NLP 实验室", "href": "https://nlp.csai.tsinghua.edu.cn/" },
+            { "type": "text", "text": "【AI 技术内容运营 + 开源社区运营】" }
+          ],
+          "workBlocks": [
+            {
+              "heading": "清华 NLP 实验室公众号主管",
+              "bodyParagraphs": [
+                [
+                  {
+                    "type": "text",
+                    "text": "大模型技术传播：AI 领域学术内容润色与传播，参与 ChatDev、MiniCPM 系列等重点项目发布"
+                  }
+                ],
+                [
+                  { "type": "text", "text": "视觉设计：" },
+                  {
+                    "type": "link",
+                    "text": "实验室官网招聘主页的 UI 设计",
+                    "href": "https://nlp.csai.tsinghua.edu.cn/jobs"
+                  },
+                  { "type": "text", "text": "；公众号平台视觉设计 0 到 1 建设" }
+                ]
+              ]
+            },
+            {
+              "heading": "OpenBMB 矩阵媒体运营 & 开源社群运营",
+              "bodyParagraphs": [
+                [
+                  { "type": "text", "text": "社媒传播：小红书、即刻、微博、Bilibili 等中文矩阵及 " },
+                  { "type": "link", "text": "X", "href": "https://x.com/OpenBMB" },
+                  { "type": "text", "text": " 的日常运营、内容发布与互动管理" }
+                ],
+                [
+                  { "type": "text", "text": "传播活动协助：重大活动（如技术发布、" },
+                  {
+                    "type": "link",
+                    "text": "大模型公开课",
+                    "href": "https://www.bilibili.com/video/BV1pf421z757/?spm_id_from=333.337.search-card.all.click&vd_source=08c1f9fc8266c73d84a2254f77306c8d"
+                  },
+                  { "type": "text", "text": "）在社媒的传播节奏" }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "技术社群维护：管理并维护 OpenBMB 开源社群，覆盖微信、Discord 等平台"
+                  }
+                ],
+                [
+                  { "type": "text", "text": "开源榜单评奖申报：申请「" },
+                  {
+                    "type": "link",
+                    "text": "2024年度开源社区",
+                    "href": "https://mp.weixin.qq.com/s/TQ1k1CWzCo5xxP3W-w0QNg"
+                  },
+                  { "type": "text", "text": "」、「量子位AI 100产品」等开源奖项" }
+                ]
+              ]
+            }
+          ],
+          "tags": ["LLM技术传播","内容运营","公众号运营", "媒体合作", "开源社区","海外运营"]
+        }
+      },
+      "education": {
+        "edu-02": {
+          "range": "2020—2023",
+          "location": "重庆",
+          "degree": "重庆大学，城市规划",
+          "school": "硕士",
+          "bodyParagraphs": [
+            [
+              { "type": "text", "text": "协助导师谭文勇编著" },
+              {
+                "type": "link",
+                "text": "《城市形态要素》",
+                "href": "https://bookcenter.hustp.com/detail/10039.html"
+              },
+              {
+                "type": "text",
+                "text": "，参与第二章撰写与绘图，协助全书校对"
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "text": "《山地住区道路网络形态测度方法实证研究——以重庆市老城区为例》",
+                "href": "https://kns.cnki.net/kcms2/article/abstract?v=LM91IAda-McWRjKCvklTSZT5vb12UcdYNeqghH90-bQndDw1vivevxNvrkQ1Aw340ULsFFEn13lwqP0A4K5meWQ1mKlmXo9SVD6nhvOEFA0EUqgXmdhX9EeCXflWxccfnpqxIyMitKQE5rzO9buDiYHk2iHjeOXEBFqaBT78U1FSw1Sabwyq_o35zhqFVUOR&uniplatform=NZKPT&language=CHS"
+              },
+              { "type": "text", "text": "优秀毕业论文提名" }
+            ],
+            
+            [
+              {
+                "type": "link",
+                "text": "《Strategies for Building Resilience of 15-Minute Community Life Circles from the Perspective of Pandemic》",
+                "href": "https://www.witpress.com/elibrary/ei-volumes/5/3/2919"
+              },
+              {
+                "type": "text",
+                "text": " 发表于期刊《International Journal of Environmental Impacts》"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "《后疫情时代背景下的社区公共服务设施优化策略研究——以重庆市石井坡中心湾社区为例》收录于论文集《环境行为学学会》"
+              }
+            ]
+          ]
+        },
+        "edu-01": {
+          "range": "2016—2020",
+          "location": "成都",
+          "degree": "四川农业大学，城乡规划",
+          "school": "学士",
+          "bodyLines": [
+            "第十四届「挑战杯」四川省大学生课外学术科技作品竞赛省一等奖",
+            "「悦创杯」城市规划设计大赛二等奖"
+          ]
+        }
+      }
+    }
+  }
+}

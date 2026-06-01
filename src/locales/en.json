@@ -1,0 +1,493 @@
+{
+  "site": {
+    "logo": "Xuan.",
+    "pageTitle": "Xuan — Siyuan"
+  },
+  "a11y": {
+    "language": "Choose language"
+  },
+  "lang": {
+    "en": "EN",
+    "zh": "中文"
+  },
+  "profile": {
+    "name": "Siyuan",
+    "bio": "Hi! My name is Siyuan.\nI love open landscapes, cycling with the wind, adventures, and unexpected discoveries ✨",
+    "portraitAlt": "Portrait of Siyuan"
+  },
+  "quote": {
+    "side": "“One’s life has value so long as one attributes value to the life of others, by means of love, friendship, indignation and compassion.”\n— Simone de Beauvoir"
+  },
+  "tabs": {
+    "resume": "Resume",
+    "about": "About",
+    "paintings": "Paintings"
+  },
+  "about": {
+    "longBio": "In my spare time, I love tidying up my room, oil painting, and cooking. On weekends, you’ll usually find me going for walks, cycling to catch the breeze, or working up a good sweat playing badminton. I enjoy humor and am always drawn to fun, witty, and creative ideas.",
+    "photoAlt": "Portrait of Siyuan Cai in a garden walkway",
+    "lifeMapping": {
+      "sectionAria": "Interactive life timeline visualization",
+      "ambientLine1": "You can't connect the dots looking forward；",
+      "ambientLine2": "you can only connect them looking backward.",
+      "heading": "Dots.",
+      "subheading": "A constellation of experiences",
+      "ledTo": "Led to",
+      "closePanel": "Close detail panel",
+      "type": {
+        "life": "Life",
+        "learn": "Learn",
+        "work": "Work"
+      }
+    },
+    "dotsPhilosophy": {
+      "title": "On connecting the dots",
+      "paragraphs": [
+        "I am a huge believer in Steve Jobs’ philosophy of {{connectingDots}}.",
+        "So I want to introduce myself starting from the dots I’ve encountered along the way—through memorable experiences, moments of excitement, and sparks of curiosity that helped me rediscover who I am. I’m also genuinely curious about what shape those dots might form when I look back one day—whether they become a line, a network, or perhaps a river that branches out and eventually converges again.",
+        "This idea of connecting the dots has also changed the way I see things. I’ve come to believe that most of the dots in life don’t come with an instruction manual. They simply exist to be believed in, to be felt, to be lived through. Even interests or impulses that don’t seem useful at the time may eventually find their place in the future. I’m learning to meet each dot with a more open perspective, to look at every experience on more equal footing, and to see the more constructive side of what has happened, while trying to understand how these experiences might be connected."
+      ],
+      "connectingDotsPhrase": "connecting the dots",
+      "connectingDotsHoverSegments": [
+        "Many experiences seem scattered and useless in the moment, but only when you look back, do you realize they were connected all along, pointing toward the same outcome."
+      ],
+      "connectingDotsAttribution": "— Steve Jobs"
+    }
+  },
+  "social": {
+    "row": {
+      "x": "@siuan_c",
+      "jike": "@菜悬",
+      "xiaohongshu": "@摇滚菜芯",
+      "bonjour": "@菜悬"
+    },
+    "aria": {
+      "x": "X (Twitter) @siuan_C",
+      "jike": "Jike @菜悬",
+      "xiaohongshu": "Xiaohongshu @摇滚菜芯",
+      "bonjour": "bonjour @菜悬 (no link)"
+    }
+  },
+  "panels": {
+    "resume": {
+      "lead": "Résumé highlights will live here."
+    },
+    "about": {
+      "lead": "About me in more detail soon."
+    },
+    "paintings": {
+      "lead": "Selected works and sketches will appear here."
+    }
+  },
+  "paintings": {
+    "sectionAria": "Oil painting portfolio",
+    "heroLead": "",
+    "modal": {
+      "medium": "Medium",
+      "dimensions": "Dimensions",
+      "year": "Year",
+      "availability": "Availability",
+      "availabilityValue": "Inquire",
+      "close": "Close"
+    },
+    "fullTitle": "Oil archive",
+    "fullLead": "This view will host a fuller oil painting portfolio with a dedicated layout—coming next.",
+    "fullBack": "Back to overview"
+  },
+  "resume": {
+    "sectionAria": "Resume archive layout",
+    "brand": {
+      "line1": "Siyuan",
+      "line2": "Cai"
+    },
+    "meta": {
+      "aria": "Contact and preference summary",
+      "email": "Email address",
+      "wechat": "WeChat",
+      "jobPreference": "Job preference",
+      "branding": "Technology branding"
+    },
+    "contactValues": {
+      "jobPreference": "Content",
+      "branding": "Technology Branding"
+    },
+    "nav": {
+      "aria": "Resume sections",
+      "education": "Education",
+      "professional": "Professional"
+    },
+    "index": {
+      "aria": "System index",
+      "col1": "Index",
+      "col2": "Index"
+    },
+    "sections": {
+      "education": "Education",
+      "professional": "Professional experience"
+    },
+    "kicker": {
+      "academic": "[ Education ]",
+      "professional": "[ Professional experience ]"
+    },
+    "tagsAria": "Skill and focus tags",
+    "behindCv": {
+      "button": "[ Behind the CV ]",
+      "backToCv": "[ Return to CV ]",
+      "sortAria": "Sort behind-the-CV entries",
+      "sortTimeline": "Timeline order",
+      "sortDefault": "Default order",
+      "buttonTooltip": "Some outcomes can’t be captured in bullet points—the thoughts and feelings behind the work are what shape me more deeply. You’re welcome to flip to the other side of this résumé.",
+      "emptyPlaceholder": "(Behind-the-scenes notes for this role are not filled in yet.)",
+      "galleryUi": {
+        "stripAria": "Behind-the-story image gallery",
+        "lightboxAria": "View enlarged image",
+        "prev": "Previous",
+        "next": "Next",
+        "close": "Close"
+      },
+      "stories": {
+        "education": {
+          "edu-02": {
+            "paragraphs": [
+              "[2020 — 2023 · Chongqing University, MEng] Placeholder: the moments between thesis drafts, field visits, and late edits that never become a line item.",
+              "Second paragraph: what I learned about trust—between advisors, peers, and the city itself—beyond what publications can show.",
+              "Third paragraph: replace this block with your long-form story whenever you’re ready."
+            ]
+          },
+          "edu-01": {
+            "paragraphs": [
+              "[2016 — 2020 · Sichuan Agricultural University, BEng · Chengdu] Placeholder: four years of competitions and studios, plus the quieter doubts that shaped how I see planning.",
+              "Second paragraph: the human texture behind “Challenge Cup” medals—sleep, rework, and small wins that résumés flatten.",
+              "Third paragraph: more to come."
+            ]
+          }
+        },
+        "experience": {
+          "exp-04": {
+            "paragraphs": [
+              "[Jul 2025 — Apr 2026 · Xunlei] Placeholder: daily curation cadence, community bootstrapping, and the tension between throughput and care.",
+              "Second paragraph: what it felt like to keep a steady signal through noisy feeds—replace with your narrative."
+            ]
+          },
+          "exp-02": {
+            "paragraphs": [
+              "[Oct 2023 — Apr 2025 · ModelBest & Tsinghua NLP] Placeholder: building a visual language for research releases while staying faithful to technical nuance.",
+              "Second paragraph: the backstage of multi-stakeholder launches—copy, design, timing, and nerves that never make the PDF.",
+              "Third paragraph: extend this section with your own reflections."
+            ],
+            "gallery": [
+              {
+                "src": "/resume/behind/exp-02/01-ai-conference.png",
+                "alt": "MiniCPM at the China AI Conference",
+                "caption": "Taking MiniCPM to the China Artificial Intelligence Conference",
+                "aspectRatio": 1.33
+              },
+              {
+                "src": "/resume/behind/exp-02/02-openbmb-award.png",
+                "alt": "OpenBMB Open Source Innovation List award",
+                "caption": "OpenBMB Open Source Innovation List award ceremony",
+                "aspectRatio": 1.5
+              },
+              {
+                "src": "/resume/behind/exp-02/03-llm-course.png",
+                "alt": "Large-model public course recording",
+                "caption": "Large-model public course recording session",
+                "aspectRatio": 1.33
+              },
+              {
+                "src": "/resume/behind/exp-02/04-ai-pet-meetup.png",
+                "alt": "AI pet offline meetup",
+                "caption": "AI pet offline meetup",
+                "aspectRatio": 1.2
+              },
+              {
+                "src": "/resume/behind/exp-02/05-nlp-annual.png",
+                "alt": "Tsinghua NLP Lab annual meeting",
+                "caption": "Tsinghua NLP Laboratory annual meeting preparation",
+                "aspectRatio": 1.4
+              },
+              {
+                "src": "/resume/behind/exp-02/06-modelbest-annual.png",
+                "alt": "ModelBest annual meeting",
+                "caption": "ModelBest annual meeting",
+                "aspectRatio": 1.5
+              },
+              {
+                "src": "/resume/behind/exp-02/07-lab-reunion.png",
+                "alt": "Lab mentors reunion dialogue",
+                "caption": "Lab mentors and alumni reunion dialogue",
+                "aspectRatio": 1.33
+              }
+            ]
+          }
+        }
+      }
+    },
+    "entries": {
+      "experience": {
+        "exp-04": {
+          "range": "Jul 2025 — Apr 2026",
+          "location": "Beijing",
+          "title": "Xunlei — Content Operations & Product Operations",
+          "titleSegments": [
+            {
+              "type": "link",
+              "text": "Xunlei",
+              "href": "https://www.xunlei.com/"
+            },
+            {
+              "type": "text",
+              "text": " — Content Operations & Product Operations"
+            }
+          ],
+          "workBlocks": [
+            {
+              "heading": "AI News Platform — Content Operations (AKA AI Content Discovery)",
+              "bodyParagraphs": [
+                [
+                  {
+                    "type": "text",
+                    "text": "Participated in building an AI news aggregation platform, responsible for content system development and overall content quality control."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Defined editorial positioning and iterated content formats (text news, audio-visual media, social media); established evaluation criteria and content selection frameworks; tracked and curated high-quality global AI information sources to build a stable intelligence acquisition network."
+                  }
+                ]
+              ]
+            },
+            {
+              "heading": "Read-Later Tool — Product & User Operations",
+              "bodyParagraphs": [
+                [
+                  {
+                    "type": "text",
+                    "text": "Participated in operations of an AI-powered read-later product, responsible for product cold start execution and copywriting."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Acquired initial seed users, collected and structured user feedback, facilitated requirement organization and product iteration, and established a closed-loop user communication and feedback mechanism; also responsible for brand content production and product messaging support."
+                  }
+                ]
+              ]
+            }
+          ],
+          "tags": [
+            "Content Sensibility",
+            "AI Information Sourcing",
+            "Product Cold Start",
+            "Seed User Acquisition",
+            "Brand Copywriting"
+          ]
+        },
+        "exp-02": {
+          "range": "Oct 2023 — Apr 2025",
+          "location": "Beijing",
+          "title": "ModelBest & Tsinghua NLP Lab — AI Technical Content Operations & Open-Source Community Operations",
+          "titleSegments": [
+            {
+              "type": "link",
+              "text": "ModelBest",
+              "href": "https://modelbest.cn/"
+            },
+            {
+              "type": "text",
+              "text": " & "
+            },
+            {
+              "type": "link",
+              "text": "Tsinghua NLP Lab",
+              "href": "https://nlp.csai.tsinghua.edu.cn/"
+            },
+            {
+              "type": "text",
+              "text": " — AI Technical Content Operations & Open-Source Community Operations"
+            }
+          ],
+          "workBlocks": [
+            {
+              "heading": "Official WeChat Account Lead, Tsinghua NLP Laboratory",
+              "bodyParagraphs": [
+                [
+                  {
+                    "type": "text",
+                    "text": "Large-Model Technology Communication: Edited and disseminated academic AI content; participated in releases of key projects including ChatDev and the MiniCPM series."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Visual Design: "
+                  },
+                  {
+                    "type": "link",
+                    "text": "Designed UI for the laboratory recruitment webpage",
+                    "href": "https://nlp.csai.tsinghua.edu.cn/jobs"
+                  },
+                  {
+                    "type": "text",
+                    "text": "; built visual identity for the official account platform from scratch (0→1)."
+                  }
+                ]
+              ]
+            },
+            {
+              "heading": "OpenBMB Matrix Media Operations & Open-Source Community Operations",
+              "bodyParagraphs": [
+                [
+                  {
+                    "type": "text",
+                    "text": "Social Media Communication: Daily operation, publishing, and engagement management across Chinese platforms (Xiaohongshu, Jike, Weibo, Bilibili) and "
+                  },
+                  {
+                    "type": "link",
+                    "text": "X",
+                    "href": "https://x.com/OpenBMB"
+                  },
+                  {
+                    "type": "text",
+                    "text": " (Twitter)."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Campaign Support: Coordinated social media communication rhythms for major events such as technical releases and "
+                  },
+                  {
+                    "type": "link",
+                    "text": "large-model public courses",
+                    "href": "https://www.bilibili.com/video/BV1pf421z757/?spm_id_from=333.337.search-card.all.click&vd_source=08c1f9fc8266c73d84a2254f77306c8d"
+                  },
+                  {
+                    "type": "text",
+                    "text": "."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Technical Community Management: Maintained OpenBMB open-source communities across WeChat, Discord, and other platforms."
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "Open-Source Award Applications: Led submissions for recognitions including “"
+                  },
+                  {
+                    "type": "link",
+                    "text": "2024 Open Source Community of the Year",
+                    "href": "https://mp.weixin.qq.com/s/TQ1k1CWzCo5xxP3W-w0QNg"
+                  },
+                  {
+                    "type": "text",
+                    "text": "” and “QbitAI AI 100 Products”."
+                  }
+                ]
+              ]
+            }
+          ],
+          "tags": [
+            "LLM Technology Communication",
+            "Content Operations",
+            "Official Account Operations",
+            "Media Partnerships",
+            "Open-Source Community Management",
+            "International Operations"
+          ]
+        }
+      },
+      "education": {
+        "edu-02": {
+          "range": "2020 — 2023",
+          "location": "Chongqing",
+          "degree": "Chongqing University — urban planning",
+          "school": "Master",
+          "bodyParagraphs": [
+            [
+              {
+                "type": "text",
+                "text": "Assisted Prof. Tan Wenyong in compiling and editing "
+              },
+              {
+                "type": "link",
+                "text": "Urban Morphological Elements",
+                "href": "https://bookcenter.hustp.com/detail/10039.html",
+                "em": true
+              },
+              {
+                "type": "text",
+                "text": "; contributed to the writing and illustrations of Chapter 2 and supported proofreading for the entire volume."
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "text": "An Empirical Study on Measurement Methods of Road Network Morphology in Mountainous Residential Areas: A Case Study of the Old Urban District of Chongqing",
+                "href": "https://kns.cnki.net/kcms2/article/abstract?v=LM91IAda-McWRjKCvklTSZT5vb12UcdYNeqghH90-bQndDw1vivevxNvrkQ1Aw340ULsFFEn13lwqP0A4K5meWQ1mKlmXo9SVD6nhvOEFA0EUqgXmdhX9EeCXflWxccfnpqxIyMitKQE5rzO9buDiYHk2iHjeOXEBFqaBT78U1FSw1Sabwyq_o35zhqFVUOR&uniplatform=NZKPT&language=CHS",
+                "em": true
+              },
+              {
+                "type": "text",
+                "text": " — Nominated for Outstanding Graduation Thesis."
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "text": "Strategies for Building Resilience of 15-Minute Community Life Circles from the Perspective of Pandemic",
+                "href": "https://www.witpress.com/elibrary/ei-volumes/5/3/2919",
+                "em": true
+              },
+              {
+                "type": "text",
+                "text": ", published in "
+              },
+              {
+                "type": "em",
+                "text": "International Journal of Environmental Impacts"
+              },
+              {
+                "type": "text",
+                "text": "."
+              }
+            ],
+            [
+              {
+                "type": "em",
+                "text": "Optimization Strategies for Community Public Service Facilities in the Post-Pandemic Era: A Case Study of Zhongxinwan Community, Shijingpo, Chongqing"
+              },
+              {
+                "type": "text",
+                "text": ", included in the proceedings of the "
+              },
+              {
+                "type": "em",
+                "text": "Environmental Behavior Society"
+              },
+              {
+                "type": "text",
+                "text": "."
+              }
+            ]
+          ]
+        },
+        "edu-01": {
+          "range": "2016 — 2020",
+          "location": "Chengdu",
+          "degree": "Sichuan Agricultural University — urban and rural planning",
+          "school": "Bachelor",
+          "bodyLines": [
+            "First Prize, 14th “Challenge Cup” Sichuan Provincial Undergraduate Extracurricular Academic and Technological Works Competition.",
+            "Second Prize, “Yuechuang Cup” Urban Planning and Design Competition."
+          ]
+        }
+      }
+    }
+  }
+}

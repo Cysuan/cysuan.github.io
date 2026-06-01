@@ -1,0 +1,480 @@
+/**
+ * Aesthete landing page tokens and layout styles (ported from design HTML).
+ */
+
+:root {
+  --bg: #ffffff;
+  --text-main: #111111;
+  --text-muted: #6b6b6b;
+  --text-light: #999999;
+  --accent-green: #4a8b78;
+  --border: #eaeaea;
+  --black: #000000;
+
+  --font-serif: 'Newsreader', Georgia, 'Noto Serif SC', serif;
+  --font-sans:
+    'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /** One global centered container controls all pages. */
+  --page-max: 1036px;
+  --page-pad-x: 24px;
+
+  /** Legacy inner lane token kept for internal component sizing only. */
+  --content-max: 1036px;
+
+  --radius-full: 9999px;
+  --radius-sm: 4px;
+  --shadow-book:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-hover:
+    0 12px 32px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aesthete-root {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.aesthete-root > .page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.aesthete-root *,
+.aesthete-root *::before,
+.aesthete-root *::after {
+  box-sizing: border-box;
+}
+
+.aesthete-root h1,
+.aesthete-root h2,
+.aesthete-root h3,
+.aesthete-root .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.aesthete-root a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.aesthete-root .link-underlined {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--border);
+}
+
+.aesthete-root .link-underlined:hover {
+  text-decoration-color: var(--text-main);
+}
+
+.aesthete-root .meta-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.aesthete-root .accent-text {
+  color: var(--accent-green);
+}
+
+.aesthete-root .page-container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad-x);
+}
+
+.aesthete-root .site-chrome-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background-color: var(--bg);
+  padding: var(--space-md) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+}
+
+.aesthete-root .logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-style: italic;
+}
+
+.aesthete-root .lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+.aesthete-root .lang-opt {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.aesthete-root .lang-opt.is-active {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.aesthete-root .lang-opt:not(.is-active):hover {
+  color: var(--text-muted);
+}
+
+.aesthete-root .lang-sep {
+  opacity: 0.55;
+  user-select: none;
+  pointer-events: none;
+}
+
+/**
+ * Hero: two fractional columns share the inner content lane (`--content-max`).
+ */
+.aesthete-root .hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+  display: grid;
+  /** Keep quote width stable, give remaining space to author-card. */
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-lg);
+  align-items: end;
+}
+
+.aesthete-root .author-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: var(--content-max);
+  width: 100%;
+}
+
+.aesthete-root .avatar-lg {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.aesthete-root .author-name {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.aesthete-root .author-bio {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  max-width: var(--content-max);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.aesthete-root .author-bio.preserve-lines {
+  white-space: pre-line;
+}
+
+.aesthete-root .author-social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: var(--space-sm);
+}
+
+.aesthete-root .social-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+.aesthete-root .social-chip--link:hover {
+  color: var(--text-main);
+}
+
+.aesthete-root .social-chip--static {
+  cursor: default;
+}
+
+.aesthete-root .social-chip--static:hover {
+  color: var(--text-muted);
+}
+
+.aesthete-root .social-icon-slot {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.aesthete-root .social-icon-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.aesthete-root .social-x-glyph {
+  width: 13px;
+  height: 13px;
+}
+
+.aesthete-root .social-mail-glyph {
+  width: 14px;
+  height: 14px;
+}
+
+/** WeChat hover QR tooltip (shown only on zh UI). */
+.aesthete-root .social-chip--wechat {
+  position: relative;
+  cursor: default;
+  user-select: none;
+}
+
+.aesthete-root .social-chip--wechat:hover {
+  color: var(--text-main);
+}
+
+.aesthete-root .social-wechat-pop {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -10px);
+  width: 2.5cm;
+  height: 2.5cm;
+  padding: 0.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 9999;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+.aesthete-root .social-wechat-pop img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Hover target is the whole chip; keep pop visible when cursor is over it. */
+.aesthete-root .social-chip--wechat:hover .social-wechat-pop,
+.aesthete-root .social-chip--wechat:focus-within .social-wechat-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -14px);
+  pointer-events: auto;
+}
+
+.aesthete-root .hero-quote-wrap {
+  min-width: 0;
+  justify-self: end;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.aesthete-root .quote-text {
+  margin: 0;
+  white-space: pre-line;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-light);
+  max-width: 300px;
+  text-align: right;
+  font-style: italic;
+}
+
+.aesthete-root[data-ui-lang='zh'] .hero-quote-wrap .quote-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.aesthete-root .tabs-container {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  gap: 2rem;
+}
+
+.aesthete-root .tab {
+  padding: 0 0 1rem 0;
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--text-light);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.aesthete-root .tab:hover {
+  color: var(--text-main);
+}
+
+.aesthete-root .tab.active {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.aesthete-root .tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--black);
+}
+
+.aesthete-root .resume-section {
+  scroll-margin-top: 5rem;
+}
+
+.aesthete-root .paintings-full-stub {
+  padding: var(--space-lg) 0 var(--space-xl);
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.aesthete-root .paintings-full-stub-back {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+}
+
+.aesthete-root .paintings-full-stub-back a.link-underlined,
+.aesthete-root .paintings-full-stub-back a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.aesthete-root .paintings-full-stub-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.75rem;
+}
+
+.aesthete-root .paintings-full-stub-lead {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 36rem;
+}
+
+.aesthete-root .tab-panel-shell {
+  padding: 0 0 var(--space-xl);
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+/**
+ * Resume placeholder text uses the primary content column width (`--content-max`).
+ */
+.aesthete-root .tab-panel-copy {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  max-width: var(--content-max);
+  line-height: 1.75;
+}
+
+.aesthete-root .site-footer {
+  margin-top: auto;
+  padding: var(--space-xl) 0 var(--space-lg);
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.aesthete-root .site-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.aesthete-root .site-footer-line {
+  margin: 0;
+}
+
+.aesthete-root .site-footer-line--primary {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.aesthete-root .site-footer-line--muted {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .aesthete-root .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 3rem;
+  }
+
+}

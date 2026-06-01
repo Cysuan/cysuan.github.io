@@ -1,0 +1,340 @@
+/**
+ * Paintings portfolio — Aura-style staggered grid + lightbox (scoped under aesthete-root).
+ */
+
+.aesthete-root .paintings-gallery .italic {
+  font-style: italic;
+}
+
+.aesthete-root .paintings-gallery {
+  --paintings-text: #1a1916;
+  --paintings-mint: #c8dd9b;
+  --paintings-pink: #f1cdc7;
+  --paintings-peach: #f5dac9;
+  --paintings-blue: #d6e3f0;
+  --paintings-radius-lg: 24px;
+  --paintings-radius-pill: 999px;
+
+  position: relative;
+  padding: 0 0 var(--space-xl);
+  color: var(--paintings-text);
+}
+
+.aesthete-root .paintings-gallery-hero {
+  position: relative;
+  margin-bottom: var(--space-lg);
+}
+
+.aesthete-root .paintings-gallery-lead {
+  margin-top: var(--space-md);
+  max-width: 420px;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 300;
+  color: #757575;
+}
+
+.aesthete-root .paintings-decor {
+  position: absolute;
+  stroke: var(--paintings-text);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.aesthete-root .paintings-decor-eye {
+  top: -1.25rem;
+  right: 10%;
+  width: 5rem;
+}
+
+.aesthete-root .paintings-decor-squiggle {
+  bottom: -2.5rem;
+  left: 40%;
+  width: 7.5rem;
+}
+
+.aesthete-root .paintings-decor-face {
+  top: 9.375rem;
+  right: 2%;
+  width: 3.75rem;
+}
+
+.aesthete-root .paintings-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.aesthete-root .paintings-card {
+  border-radius: var(--paintings-radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.aesthete-root .paintings-card:hover {
+  transform: translateY(-8px);
+}
+
+.aesthete-root .paintings-card-hit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+
+.aesthete-root .paintings-card-img-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.aesthete-root .paintings-card-img,
+.aesthete-root .paintings-card-placeholder {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--paintings-radius-lg) - 8px);
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 4 / 5;
+}
+
+.aesthete-root .paintings-card-placeholder {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 25, 22, 0.06),
+    rgba(26, 25, 22, 0.14)
+  );
+  min-height: 12rem;
+}
+
+.aesthete-root .paintings-card-meta {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.aesthete-root .paintings-card-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.aesthete-root .paintings-card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.aesthete-root .paintings-card-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--paintings-radius-pill);
+  background: rgba(26, 25, 22, 0.06);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.aesthete-root .paintings-card-icon {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  width: 32px;
+  height: 32px;
+  background: var(--paintings-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.aesthete-root .paintings-card:hover .paintings-card-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.aesthete-root .paintings-card-hit:focus-visible {
+  outline: 2px solid var(--paintings-text);
+  outline-offset: 4px;
+}
+
+/* Lightbox */
+
+.aesthete-root .paintings-lightbox {
+  margin: auto;
+  border: none;
+  background: transparent;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.aesthete-root .paintings-lightbox::backdrop {
+  background: rgba(244, 239, 233, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.aesthete-root .paintings-lightbox[open] {
+  animation: paintings-modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes paintings-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.aesthete-root .paintings-lightbox-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  position: relative;
+}
+
+.aesthete-root .paintings-lightbox-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 25, 22, 0.2);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paintings-text);
+  transition: background 0.2s;
+}
+
+.aesthete-root .paintings-lightbox-close:hover {
+  background: rgba(26, 25, 22, 0.05);
+}
+
+.aesthete-root .paintings-lightbox-img-wrap {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.aesthete-root .paintings-lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+}
+
+.aesthete-root .paintings-lightbox-details {
+  flex: 0 0 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--paintings-text);
+}
+
+.aesthete-root .paintings-lightbox-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.aesthete-root .paintings-lightbox-info {
+  list-style: none;
+  margin: 0;
+  padding: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid rgba(26, 25, 22, 0.1);
+}
+
+.aesthete-root .paintings-lightbox-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(26, 25, 22, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.aesthete-root .paintings-lightbox-info-label {
+  color: rgba(26, 25, 22, 0.6);
+}
+
+.aesthete-root .paintings-lightbox-decor {
+  width: 60px;
+  stroke: var(--paintings-text);
+  fill: none;
+  stroke-width: 1.5;
+  margin-top: 2rem;
+  color: var(--paintings-text);
+}
+
+@media (max-width: 1024px) {
+  .aesthete-root .paintings-gallery-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aesthete-root .paintings-card {
+    margin-top: 0 !important;
+    margin-bottom: 2rem;
+  }
+
+  .aesthete-root .paintings-card-img,
+  .aesthete-root .paintings-card-placeholder {
+    aspect-ratio: auto;
+    min-height: 60vh;
+  }
+
+  .aesthete-root .paintings-lightbox-content {
+    flex-direction: column;
+    overflow-y: auto;
+    padding-top: 4rem;
+  }
+
+  .aesthete-root .paintings-lightbox-img-wrap {
+    justify-content: center;
+  }
+
+  .aesthete-root .paintings-lightbox-details {
+    flex: none;
+    width: 100%;
+    padding-bottom: 4rem;
+  }
+}

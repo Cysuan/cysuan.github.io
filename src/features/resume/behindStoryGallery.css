@@ -1,0 +1,369 @@
+/**
+ * B 层叙事横向图片画廊（拍立得式叠放 + 固定层灯箱，避免页面 reflow）。
+ */
+
+.aesthete-root .behind-gallery {
+  --gallery-frame: 0.22rem;
+  --gallery-overlap: 3.25rem;
+  position: relative;
+  margin: 0 0 0.65rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.aesthete-root .behind-gallery-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  touch-action: pan-x;
+}
+
+.aesthete-root .behind-gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.aesthete-root .behind-gallery-scroll.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .aesthete-root .behind-gallery {
+    --gallery-overlap: 5rem;
+  }
+}
+
+.aesthete-root .behind-gallery-track {
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  min-height: 228px;
+  padding: 0.35rem clamp(0.75rem, 4vw, 2.5rem) 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .aesthete-root .behind-gallery-track {
+    min-height: 268px;
+  }
+}
+
+.aesthete-root .behind-gallery-card {
+  --card-x: 0px;
+  --card-y: var(--init-y, 0px);
+  --card-rot: var(--init-rot, 0deg);
+  --card-scale: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: calc(-1 * var(--gallery-overlap));
+  padding: var(--gallery-frame);
+  padding-bottom: 0.28rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: none;
+  cursor: pointer;
+  text-align: center;
+  scroll-snap-align: center;
+  transform: translate(var(--card-x), var(--card-y)) rotate(var(--card-rot)) scale(var(--card-scale));
+  transform-origin: center bottom;
+  transition:
+    transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1),
+    z-index 0s;
+  will-change: transform;
+  z-index: 1;
+}
+
+.aesthete-root .behind-gallery-card:first-child {
+  margin-left: 0;
+}
+
+.aesthete-root .behind-gallery-card::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 1.35rem;
+  height: 0.4rem;
+  margin-left: -0.675rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+.aesthete-root .behind-gallery-card:hover,
+.aesthete-root .behind-gallery-card:focus-visible {
+  --card-scale: 1.05;
+  --card-y: calc(var(--init-y, 0px) - 18px);
+  --card-rot: 0deg;
+  z-index: 20;
+  box-shadow: none;
+  outline: none;
+}
+
+.aesthete-root .behind-gallery-card:hover ~ .behind-gallery-card {
+  --card-x: 14px;
+}
+
+.aesthete-root .behind-gallery-card:has(~ .behind-gallery-card:hover) {
+  --card-x: -8px;
+}
+
+.aesthete-root .behind-gallery-photo {
+  display: block;
+  height: clamp(108px, 22vw, 168px);
+  width: auto;
+  max-width: min(220px, 42vw);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.aesthete-root .behind-gallery-photo img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/** 条带内图注：紧贴照片下缘、落在白框底部 */
+.aesthete-root .behind-gallery-card-caption {
+  display: block;
+  width: 100%;
+  max-width: min(220px, 42vw);
+  margin: 0;
+  padding: 0.1rem 0.15rem 0;
+  font-family: var(--r-font, var(--font-sans));
+  font-size: 0.58rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.58);
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .aesthete-root .behind-gallery-card-caption {
+    font-size: 0.62rem;
+  }
+}
+
+/** 灯箱挂载在 body，需独立于 `.aesthete-root` */
+.behind-gallery-lightbox {
+  --lb-inset: clamp(1.25rem, 5vmin, 2.75rem);
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: var(--lb-inset);
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(6px);
+  animation: behind-gallery-fade-in 0.28s ease;
+}
+
+@keyframes behind-gallery-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.behind-gallery-lightbox-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: calc(100vw - 2 * var(--lb-inset));
+  max-height: calc(100dvh - 2 * var(--lb-inset));
+  margin: 0;
+  z-index: 1;
+}
+
+.behind-gallery-lightbox-card {
+  --lb-frame: 0.32rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  max-width: calc(100vw - 2 * var(--lb-inset) - 0.5rem);
+  max-height: calc(100dvh - 2 * var(--lb-inset) - 0.5rem);
+  padding: var(--lb-frame);
+  padding-bottom: 0.36rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.32);
+  transform: rotate(0deg);
+  transform-origin: center center;
+  animation: behind-gallery-lightbox-enter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.behind-gallery-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  width: 100%;
+}
+
+.behind-gallery-lightbox-card.is-navigating {
+  animation: behind-gallery-lightbox-swap 0.32s ease;
+}
+
+@keyframes behind-gallery-lightbox-enter {
+  from {
+    opacity: 0;
+    transform: rotate(var(--from-rot, 0deg)) scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes behind-gallery-lightbox-swap {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  45% {
+    opacity: 0.55;
+    transform: rotate(0deg) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.behind-gallery-lightbox-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+/**
+ * 约 1.5× 条带尺寸，且限制在视口留白内（避免 transform 导致「贴顶」错觉）
+ */
+.behind-gallery-lightbox-visual img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(calc(100vw - 2 * var(--lb-inset) - 2.5rem), 42rem);
+  max-height: min(calc(100dvh - 2 * var(--lb-inset) - 5rem), 52vh);
+  border-radius: 6px;
+  object-fit: contain;
+  transform: none;
+}
+
+/** 放大态图注：紧贴照片下缘、白框内（与条带图注风格一致） */
+.behind-gallery-lightbox-caption {
+  margin: 0;
+  padding: 0.12rem 0.35rem 0;
+  max-width: min(82vw, 600px);
+  font-family: Inter, 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+@media (min-width: 768px) {
+  .behind-gallery-lightbox-caption {
+    font-size: 0.78rem;
+  }
+}
+
+.behind-gallery-lightbox-close {
+  position: absolute;
+  top: clamp(0.75rem, 3vw, 1.25rem);
+  right: clamp(0.75rem, 3vw, 1.25rem);
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: Inter, 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.behind-gallery-lightbox-close:hover,
+.behind-gallery-lightbox-close:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  outline: none;
+}
+
+.behind-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: Inter, 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.behind-gallery-nav:hover,
+.behind-gallery-nav:focus-visible {
+  background: rgba(255, 255, 255, 0.24);
+  outline: none;
+}
+
+.behind-gallery-nav--prev {
+  left: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.behind-gallery-nav--next {
+  right: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aesthete-root .behind-gallery-card:hover,
+  .aesthete-root .behind-gallery-card:focus-visible {
+    --card-scale: 1;
+    --card-y: var(--init-y, 0px);
+    --card-rot: var(--init-rot, 0deg);
+  }
+
+  .behind-gallery-lightbox-card,
+  .behind-gallery-lightbox-card.is-navigating {
+    animation: none;
+  }
+
+  .behind-gallery-lightbox-visual img {
+    max-height: min(calc(100dvh - 2 * var(--lb-inset) - 5rem), 42vh);
+  }
+}
