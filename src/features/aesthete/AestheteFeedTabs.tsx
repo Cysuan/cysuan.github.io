@@ -3,14 +3,13 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 type TabSpec = {
   id: 'resume' | 'about' | 'paintings'
-  to: string | { pathname: string; hash?: string }
+  to: string
 }
 
 const TABS: TabSpec[] = [
-  /** Hash aligns with `#resume` for in-page anchor after navigation. */
-  { id: 'resume', to: { pathname: '/resume', hash: 'resume' } },
-  { id: 'about', to: { pathname: '/about', hash: 'about' } },
-  { id: 'paintings', to: { pathname: '/paintings', hash: 'paintings' } },
+  { id: 'resume', to: '/resume' },
+  { id: 'about', to: '/about' },
+  { id: 'paintings', to: '/paintings' },
 ]
 
 const TAB_KEYS: Record<TabSpec['id'], 'tabs.resume' | 'tabs.about' | 'tabs.paintings'> = {

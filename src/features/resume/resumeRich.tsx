@@ -1,10 +1,11 @@
 import type { TFunction } from 'i18next'
+import { PortfolioQrHoverLink } from './PortfolioQrHoverLink'
 
 /** 行内富文本片段：纯文字、斜体或外链 */
 export type ResumeRichSegment =
   | { type: 'text'; text: string }
   | { type: 'em'; text: string }
-  | { type: 'link'; text: string; href: string; em?: boolean }
+  | { type: 'link'; text: string; href: string; em?: boolean; qrHover?: boolean }
 
 function isResumeRichSegment(s: unknown): s is ResumeRichSegment {
   if (!s || typeof s !== 'object' || typeof (s as { text?: string }).text !== 'string') {
@@ -79,16 +80,34 @@ type RichParagraphProps = {
   paraKey: string
   /** 段落容器 class，默认教育正文行样式 */
   className?: string
+  /** 悬停「作品集」等链接时展示的二维码替代文本 */
+  portfolioQrAlt?: string
 }
 
 /**
  * 单段富文本（支持换行 `\n` 与行内链接）。
  */
-export function RichParagraph({ segments, paraKey, className = 'resume-entry-body-line' }: RichParagraphProps) {
+export function RichParagraph({
+  segments,
+  paraKey,
+  className = 'resume-entry-body-line',
+  portfolioQrAlt,
+}: RichParagraphProps) {
   return (
     <p className={className}>
       {segments.map((s, i) => {
         if (s.type === 'link') {
+          if (s.qrHover && portfolioQrAlt) {
+            return (
+              <PortfolioQrHoverLink
+                key={`${paraKey}-s-${i}`}
+                text={s.text}
+                href={s.href}
+                em={s.em}
+                qrAlt={portfolioQrAlt}
+              />
+            )
+          }
           return (
             <a
               key={`${paraKey}-s-${i}`}

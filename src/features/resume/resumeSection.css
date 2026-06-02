@@ -707,6 +707,53 @@
   text-decoration-color: var(--r-fg);
 }
 
+/** 「作品集」悬停二维码：脱离文档流，固定 2.5cm × 2.5cm */
+.aesthete-root .resume-portfolio-qr-wrap {
+  position: relative;
+  display: inline;
+}
+
+.aesthete-root .resume-portfolio-qr-pop {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  z-index: 120;
+  width: 2.5cm;
+  height: 2.5cm;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
+}
+
+.aesthete-root .resume-portfolio-qr-pop img {
+  display: block;
+  width: 2.5cm;
+  height: 2.5cm;
+  object-fit: contain;
+}
+
+.aesthete-root .resume-portfolio-qr-wrap:hover .resume-portfolio-qr-pop,
+.aesthete-root .resume-portfolio-qr-wrap:focus-within .resume-portfolio-qr-pop {
+  opacity: 1;
+  visibility: visible;
+}
+
+/** 悬停作品集时允许二维码溢出双层面板裁剪区 */
+.aesthete-root .resume-dual-stack:has(.resume-portfolio-qr-wrap:hover),
+.aesthete-root .resume-dual-stack:has(.resume-portfolio-qr-wrap:focus-within) {
+  overflow: visible;
+}
+
 .aesthete-root .resume-work-blocks {
   display: flex;
   flex-direction: column;

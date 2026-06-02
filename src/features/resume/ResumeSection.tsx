@@ -182,6 +182,7 @@ export function ResumeSection() {
                 paraKey={`behind-${kind}-${id}-${i}`}
                 segments={p}
                 className="resume-behind-body-line"
+                portfolioQrAlt={t('resume.behindCv.portfolioQrAlt')}
               />
             ),
           )}

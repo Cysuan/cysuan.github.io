@@ -126,6 +126,7 @@
     },
     "tagsAria": "技能与方向标签",
     "behindCv": {
+      "portfolioQrAlt": "作品集二维码",
       "button": "[ 简历背后 ]",
       "backToCv": "[ 回到简历 ]",
       "sortAria": "背后叙事条目排序",
@@ -161,7 +162,8 @@
                 {
                   "type": "link",
                   "text": "作品集",
-                  "href": "https://tools.pdf24.org/zh/pdf-preview#url=https%3A%2F%2Ffiletools6.pdf24.org%2Fclient.php%3Fmode%3Dinline%26file%3DjoinPdf_zfzyhdgexsqprtdjjd3sbtrjj5_10190233423302273114.pdf%26action%3DgetFile"
+                  "href": "https://drive.google.com/file/d/1tcGa9nGTUOHOGQPqgFeE2KGtcwqkI0F2/view?usp=sharing",
+                  "qrHover": true
                 },
                 { "type": "text", "text": "记录了这个阶段的探索。" }
               ]

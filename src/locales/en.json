@@ -131,6 +131,7 @@
     },
     "tagsAria": "Skill and focus tags",
     "behindCv": {
+      "portfolioQrAlt": "Portfolio QR code",
       "button": "[ Behind the CV ]",
       "backToCv": "[ Return to CV ]",
       "sortAria": "Sort behind-the-CV entries",

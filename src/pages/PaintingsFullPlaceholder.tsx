@@ -17,7 +17,7 @@ export function PaintingsFullPlaceholder() {
         <article className="paintings-full-stub">
           <p className="paintings-full-stub-back">
             <Link
-              to={{ pathname: '/paintings', hash: 'paintings' }}
+              to="/paintings"
               className="link-underlined"
             >
               {t('paintings.fullBack')}
