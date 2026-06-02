@@ -150,31 +150,34 @@
         "education": {
           "edu-02": {
             "paragraphs": [
-              "[2020 — 2023 · Chongqing University, MEng] Placeholder: the moments between thesis drafts, field visits, and late edits that never become a line item.",
-              "Second paragraph: what I learned about trust—between advisors, peers, and the city itself—beyond what publications can show.",
-              "Third paragraph: replace this block with your long-form story whenever you’re ready."
+              "I pursued my graduate studies just two subway stops away from home.",
+              "In my first year, coursework and projects came in waves, deadlines piling up one after another. Amid the busyness, I was fortunate to contribute a chapter to my advisor’s book, and I genuinely enjoyed that period of focused reading and writing.",
+              "In my second year, I interned at the Zhejiang Urban and Rural Planning Design Institute. Life in Hangzhou brought many new experiences: making new friends, discovering what it means to live in a so-called 「food desert」, and getting used to a cuisine without much chili. I came to realize that spiciness is not the default base of food, nor is it everyone’s baseline preference. Only after leaving Sichuan and Chongqing did I recognize my own bias toward chili as a kind of 「spicy supremacy」.",
+              "In my third year, I was fully immersed in writing my thesis. I cried and felt anxious over the writing process, while also turning to prayer and superstition in the search for a job.",
+              "Over these three years, there were no dramatic turning points. I simply kept studying, working, and finding things that interested me. I picked up a few hobbies, met many good friends, came to understand myself better, and began to see society more clearly."
             ]
           },
           "edu-01": {
             "paragraphs": [
-              "[2016 — 2020 · Sichuan Agricultural University, BEng · Chengdu] Placeholder: four years of competitions and studios, plus the quieter doubts that shaped how I see planning.",
-              "Second paragraph: the human texture behind “Challenge Cup” medals—sleep, rework, and small wins that résumés flatten.",
-              "Third paragraph: more to come."
+              "I began my university journey in Dujiangyan.",
+              "Most of the coursework involved team-based projects—learning drawing, field research, and presentations. Through these projects, I had the chance to visit rural villages and fields, and then stay up late together to push projects through deadlines. What I came to know firsthand were vegetable greenhouses, old rural houses, polluted ditches, villagers’ everyday lives, and fields of rapeseed flowers.",
+              "Outside class, I also joined the student union and various clubs, where we tried different experiments in new media writing and content creation, which I found genuinely engaging.",
+              "Over four years of coursework and practice, ranging from spatial design to narrative expression, I gradually found it interesting to tell stories about a complex world and to describe different kinds of landscapes and realities. This portfolio documents that phase of exploration."
             ]
           }
         },
         "experience": {
           "exp-04": {
             "paragraphs": [
-              "[Jul 2025 — Apr 2026 · Xunlei] Placeholder: daily curation cadence, community bootstrapping, and the tension between throughput and care.",
-              "Second paragraph: what it felt like to keep a steady signal through noisy feeds—replace with your narrative."
+              "In the AI information project, I was responsible for tracking AI-related sources both in China and abroad—from Chinese public WeChat accounts and industry briefings to in-depth YouTube podcasts, researchers’ technical blogs, Substack posts, and various newsletters. The work involved filtering, evaluating, and organizing streams of information. I found real enjoyment in this kind of content treasure hunting.",
+              "Later, in the ReadLater tools team, I focused more on user-side operations. I’m grateful for the unexpected connections the internet makes possible; through the user growth process, I also came to know a group of users who have stayed in touch over time. I’ve come to think that product operations are not only about iterating features, but also about finding more natural and human ways of communicating."
             ]
           },
           "exp-02": {
             "paragraphs": [
-              "[Oct 2023 — Apr 2025 · ModelBest & Tsinghua NLP] Placeholder: building a visual language for research releases while staying faithful to technical nuance.",
-              "Second paragraph: the backstage of multi-stakeholder launches—copy, design, timing, and nerves that never make the PDF.",
-              "Third paragraph: extend this section with your own reflections."
+              "After graduation, I moved from south to north, settling in Wudaokou, where I began my first job at ModelBest.",
+              "In what feels like the densest AI hub in the world, I worked on technical communication for research outputs from Tsinghua University labs, followed company launches, coordinated with media professionals, and helped manage open-source communities. I also had the opportunity to witness large-scale model projects advancing within national-level labs.",
+              "I was constantly surrounded by some of the smartest and most self-assured young people."
             ],
             "gallery": [
               {
