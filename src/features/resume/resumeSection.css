@@ -810,5 +810,47 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
+  .aesthete-root .resume-entry-left {
+    position: static;
+    top: auto;
+  }
 }
 
+@media (max-width: 640px) {
+  .aesthete-root .resume-viewport {
+    --r-text-sm: 0.95rem;
+    --r-text-base: 1.2rem;
+    --r-text-lg: 1.45rem;
+    --r-text-xl: 1.9rem;
+  }
+
+  .aesthete-root .resume-grid {
+    padding: 2rem 0;
+    min-height: auto;
+  }
+
+  .aesthete-root .resume-section-block {
+    padding-bottom: 4rem;
+  }
+
+  .aesthete-root .resume-kicker-row {
+    flex-wrap: wrap;
+    gap: 0.85rem 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .aesthete-root .resume-kicker-row.resume-kicker-row--split {
+    align-items: flex-start;
+  }
+
+  .aesthete-root .resume-behind-btn {
+    flex-basis: 100%;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .aesthete-root .resume-entry {
+    padding: 1.8rem 0;
+  }
+}

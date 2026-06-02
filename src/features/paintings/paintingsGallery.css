@@ -338,3 +338,41 @@
     padding-bottom: 4rem;
   }
 }
+
+@media (max-width: 640px) {
+  .aesthete-root .paintings-gallery {
+    padding-bottom: var(--space-lg);
+  }
+
+  .aesthete-root .paintings-gallery-lead {
+    font-size: 0.95rem;
+    margin-top: var(--space-sm);
+  }
+
+  .aesthete-root .paintings-card-img-wrap {
+    padding: 1.1rem 1.1rem 0;
+  }
+
+  .aesthete-root .paintings-card-meta {
+    padding: 1.1rem;
+  }
+
+  .aesthete-root .paintings-card-img,
+  .aesthete-root .paintings-card-placeholder {
+    min-height: 44vh;
+  }
+
+  .aesthete-root .paintings-lightbox {
+    padding: 1rem;
+  }
+
+  .aesthete-root .paintings-lightbox-content {
+    gap: 1.75rem;
+    padding-top: 3.25rem;
+  }
+
+  .aesthete-root .paintings-lightbox-close {
+    width: 44px;
+    height: 44px;
+  }
+}

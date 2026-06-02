@@ -478,3 +478,81 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  :root {
+    --page-pad-x: 16px;
+  }
+
+  .aesthete-root .site-chrome-header {
+    padding: var(--space-sm) 0;
+  }
+
+  .aesthete-root .logo {
+    font-size: 1.25rem;
+  }
+
+  .aesthete-root .lang-switch {
+    padding: 0.35rem 0.8rem;
+  }
+
+  .aesthete-root .tabs-container {
+    gap: 1.25rem;
+    margin-bottom: var(--space-md);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .aesthete-root .tabs-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .aesthete-root .tab {
+    font-size: 0.9rem;
+    padding-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .aesthete-root .site-footer {
+    padding: var(--space-lg) 0 var(--space-md);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-pad-x: 14px;
+  }
+
+  .aesthete-root .hero {
+    padding: 2.25rem 0 var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .aesthete-root .avatar-lg {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1.1rem;
+  }
+
+  .aesthete-root .author-name {
+    font-size: clamp(1.65rem, 7vw, 2.05rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .aesthete-root .author-bio {
+    font-size: 0.9rem;
+  }
+
+  .aesthete-root .hero-quote-wrap {
+    justify-self: start;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .aesthete-root .quote-text {
+    max-width: none;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+}

@@ -132,12 +132,12 @@
     "tagsAria": "Skill and focus tags",
     "behindCv": {
       "portfolioQrAlt": "Portfolio QR code",
-      "button": "[ Behind the CV ]",
+      "button": "[ Behind CV ]",
       "backToCv": "[ Return to CV ]",
       "sortAria": "Sort behind-the-CV entries",
       "sortTimeline": "Timeline order",
       "sortDefault": "Default order",
-      "buttonTooltip": "Some outcomes can’t be captured in bullet points—the thoughts and feelings behind the work are what shape me more deeply. You’re welcome to flip to the other side of this résumé.",
+      "buttonTooltip": "Welcome to flip to the other side of this résumé.",
       "emptyPlaceholder": "(Behind-the-scenes notes for this role are not filled in yet.)",
       "galleryUi": {
         "stripAria": "Behind-the-story image gallery",

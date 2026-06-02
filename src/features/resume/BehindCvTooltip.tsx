@@ -18,7 +18,14 @@ function splitTooltipUnits(text: string, mode: TooltipMode): string[] {
   if (mode === 'cjk') {
     return Array.from(text)
   }
-  return text.split(/(\s+)/).filter((part) => part.length > 0)
+  return text
+    .split(/(\s+)/)
+    .filter((part) => part.length > 0)
+    .map((part) => {
+      if (!/^\s+$/.test(part)) return part
+      // Keep visible spacing inside inline-flex units (normal spaces can collapse away).
+      return part.replace(/ /g, '\u00A0')
+    })
 }
 
 /**

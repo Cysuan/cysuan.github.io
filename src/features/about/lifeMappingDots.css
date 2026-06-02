@@ -351,3 +351,20 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
     padding: 48px 28px;
   }
 }
+
+@media (hover: none), (pointer: coarse) {
+  .about-life-mapping {
+    cursor: auto;
+  }
+
+  .about-life-mapping *,
+  .about-life-mapping *::before,
+  .about-life-mapping *::after {
+    cursor: auto;
+  }
+
+  .about-life-mapping .life-mapping-cursor-dot,
+  .about-life-mapping .life-mapping-cursor-circle {
+    display: none;
+  }
+}
