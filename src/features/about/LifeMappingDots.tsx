@@ -2,6 +2,7 @@ import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './lifeMappingDots.css'
 import { getLifeMappingNodeCopyRows } from './lifeMappingCopy'
+import { TutoringBusinessCard } from './TutoringBusinessCard'
 import {
   LIFE_MAPPING_EDGES,
   LIFE_MAPPING_TOPOLOGY,
@@ -122,6 +123,19 @@ function getHistoryPathIds(links: RuntimeLMLink[], targetId: string): string[] {
 
 function linkKey(sourceId: string, targetId: string): string {
   return `link-${sourceId}-${targetId}`
+}
+
+/**
+ * @param el - SVG node group or other target element
+ */
+function isElementFullyOutsideViewport(el: Element): boolean {
+  const rect = el.getBoundingClientRect()
+  return (
+    rect.bottom <= 0 ||
+    rect.top >= window.innerHeight ||
+    rect.right <= 0 ||
+    rect.left >= window.innerWidth
+  )
 }
 
 /**
@@ -273,6 +287,49 @@ export function LifeMappingDots() {
 
     io.observe(el)
     return () => io.disconnect()
+  }, [panel, closePanel])
+
+  /**
+   * Auto-close the detail panel when the selected dot leaves the viewport
+   * (e.g. user scrolls the About page while a node panel is open).
+   */
+  useEffect(() => {
+    if (!panel) return
+
+    const nodeId = panel.id
+    let rafId = 0
+
+    const checkAndClose = () => {
+      if (activeNodeIdRef.current !== nodeId) return
+      const nodeEl = document.getElementById(`node-${nodeId}`)
+      if (!nodeEl) return
+      if (isElementFullyOutsideViewport(nodeEl)) closePanel()
+    }
+
+    const scheduleCheck = () => {
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(checkAndClose)
+    }
+
+    document.addEventListener('scroll', scheduleCheck, { capture: true, passive: true })
+    window.addEventListener('resize', scheduleCheck, { passive: true })
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry && !entry.isIntersecting) closePanel()
+      },
+      { threshold: 0 },
+    )
+
+    const nodeEl = document.getElementById(`node-${nodeId}`)
+    if (nodeEl) io.observe(nodeEl)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      document.removeEventListener('scroll', scheduleCheck, true)
+      window.removeEventListener('resize', scheduleCheck)
+      io.disconnect()
+    }
   }, [panel, closePanel])
 
   /** Mount / refresh SVG simulation. */
@@ -560,6 +617,7 @@ export function LifeMappingDots() {
             <div className="life-mapping-detail-body">
               {renderPanelDesc(panel.desc)}
             </div>
+            {panel.id === 'n7' ? <TutoringBusinessCard resetKey={panel.id} /> : null}
             {panel.ledTo.length > 0 ? (
               <div className="life-mapping-detail-connections">
                 <div className="life-mapping-detail-connections-title">

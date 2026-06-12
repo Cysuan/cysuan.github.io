@@ -38,6 +38,10 @@
         "life": "Life",
         "learn": "Learn",
         "work": "Work"
+      },
+      "tutoringCard": {
+        "revealAria": "Take out tutoring business card",
+        "flipAria": "Flip tutoring business card"
       }
     },
     "dotsPhilosophy": {

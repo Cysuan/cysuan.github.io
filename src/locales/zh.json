@@ -38,6 +38,10 @@
         "life": "生活",
         "learn": "学习",
         "work": "工作"
+      },
+      "tutoringCard": {
+        "revealAria": "取出家教名片",
+        "flipAria": "翻转家教名片"
       }
     },
     "dotsPhilosophy": {
