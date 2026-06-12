@@ -162,7 +162,19 @@
               "I began my university journey in Dujiangyan.",
               "Most of the coursework involved team-based projects—learning drawing, field research, and presentations. Through these projects, I had the chance to visit rural villages and fields, and then stay up late together to push projects through deadlines. What I came to know firsthand were vegetable greenhouses, old rural houses, polluted ditches, villagers’ everyday lives, and fields of rapeseed flowers.",
               "Outside class, I also joined the student union and various clubs, where we tried different experiments in new media writing and content creation, which I found genuinely engaging.",
-              "Over four years of coursework and practice, ranging from spatial design to narrative expression, I gradually found it interesting to tell stories about a complex world and to describe different kinds of landscapes and realities. This portfolio documents that phase of exploration."
+              [
+                {
+                  "type": "text",
+                  "text": "Over four years of coursework and practice, ranging from spatial design to narrative expression, I gradually found it interesting to tell stories about a complex world and to describe different kinds of landscapes and realities. This "
+                },
+                {
+                  "type": "link",
+                  "text": "portfolio",
+                  "href": "https://drive.google.com/file/d/1tcGa9nGTUOHOGQPqgFeE2KGtcwqkI0F2/view?usp=sharing",
+                  "qrHover": true
+                },
+                { "type": "text", "text": " documents that phase of exploration." }
+              ]
             ]
           }
         },
