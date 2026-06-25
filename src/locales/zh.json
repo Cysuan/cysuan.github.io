@@ -288,7 +288,7 @@
               ]
             },
             {
-              "heading": "OpenBMB 矩阵媒体运营 & 开源社群运营",
+              "heading": "OpenBMB 内容矩阵 & 开源社区",
               "bodyParagraphs": [
                 [
                   { "type": "text", "text": "小红书等中文矩阵及 " },
@@ -305,7 +305,7 @@
                   { "type": "text", "text": "）传播和组织；" }
                 ],
                 [
-                  { "type": "text", "text": "维护微信、Discord 等开源社区生态；开源项目品牌建设及行业奖项申报工作：申请「" },
+                  { "type": "text", "text": "维护微信、Discord 等开源社区生态；开源项目品牌建设及行业奖项申报：「" },
                   {
                     "type": "link",
                     "text": "2024年度开源社区",
