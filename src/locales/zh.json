@@ -302,13 +302,7 @@
                     "text": "大模型公开课",
                     "href": "https://www.bilibili.com/video/BV1pf421z757/?spm_id_from=333.337.search-card.all.click&vd_source=08c1f9fc8266c73d84a2254f77306c8d"
                   },
-                  { "type": "text", "text": "）在社媒的传播节奏" }
-                ],
-                [
-                  {
-                    "type": "text",
-                    "text": "管理并维护 OpenBMB 开源社群，覆盖微信、Discord 等平台"
-                  }
+                  { "type": "text", "text": "）在社媒的传播节奏；管理并维护 OpenBMB 开源社群，覆盖微信、Discord 等平台" }
                 ],
                 [
                   { "type": "text", "text": "开源榜单评奖申报：申请「" },
