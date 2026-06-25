@@ -291,7 +291,7 @@
               "heading": "OpenBMB 矩阵媒体运营 & 开源社群运营",
               "bodyParagraphs": [
                 [
-                  { "type": "text", "text": "社媒传播：小红书等中文矩阵及 " },
+                  { "type": "text", "text": "小红书等中文矩阵及 " },
                   { "type": "link", "text": "X", "href": "https://x.com/OpenBMB" },
                   { "type": "text", "text": " 的内容策划" }
                 ],
@@ -302,10 +302,10 @@
                     "text": "大模型公开课",
                     "href": "https://www.bilibili.com/video/BV1pf421z757/?spm_id_from=333.337.search-card.all.click&vd_source=08c1f9fc8266c73d84a2254f77306c8d"
                   },
-                  { "type": "text", "text": "）在社媒的传播节奏；管理并维护 OpenBMB 开源社群，覆盖微信、Discord 等平台" }
+                  { "type": "text", "text": "）传播和组织；" }
                 ],
                 [
-                  { "type": "text", "text": "开源榜单评奖申报：申请「" },
+                  { "type": "text", "text": "维护微信、Discord 等开源社区生态；开源项目品牌建设及行业奖项申报工作：申请「" },
                   {
                     "type": "link",
                     "text": "2024年度开源社区",
