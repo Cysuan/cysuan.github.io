@@ -556,3 +556,65 @@
     font-size: 0.95rem;
   }
 }
+
+/** 关于页：Tab 以下区域可选模糊遮罩 */
+.aesthete-root .page-below-tabs {
+  position: relative;
+  width: 100%;
+}
+
+.aesthete-root .page-below-tabs--blur-shell {
+  isolation: isolate;
+}
+
+.aesthete-root .page-below-tabs-inner.is-obscured {
+  user-select: none;
+  pointer-events: none;
+}
+
+.aesthete-root .page-below-tabs-blur-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: auto;
+}
+
+.aesthete-root .about-blur-owner-toggle {
+  position: fixed;
+  right: clamp(0.75rem, 3vw, 1.25rem);
+  bottom: clamp(0.75rem, 3vw, 1.25rem);
+  z-index: 120;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0.42;
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.aesthete-root .about-blur-owner-toggle:hover,
+.aesthete-root .about-blur-owner-toggle:focus-visible {
+  opacity: 1;
+  color: var(--text-main);
+  border-color: rgba(26, 25, 22, 0.22);
+  outline: none;
+}
+
+.aesthete-root .about-blur-owner-toggle[aria-pressed='true'] {
+  opacity: 0.72;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .aesthete-root .page-below-tabs-blur-overlay {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}

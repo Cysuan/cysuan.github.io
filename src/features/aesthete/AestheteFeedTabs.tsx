@@ -6,9 +6,11 @@ type TabSpec = {
   to: string
 }
 
+const PAINTINGS_EXTERNAL_URL = 'https://www.xuanpaints.com'
+
 const TABS: TabSpec[] = [
-  { id: 'resume', to: '/resume' },
   { id: 'about', to: '/about' },
+  { id: 'resume', to: '/resume' },
   { id: 'paintings', to: '/paintings' },
 ]
 
@@ -34,17 +36,29 @@ export function AestheteFeedTabs() {
 
   return (
     <div className="tabs-container">
-      {TABS.map((tab) => (
-        <NavLink
-          key={tab.id}
-          to={tab.to}
-          className={({ isActive }) =>
-            `tab${isTabActive(tab.id, pathname) || isActive ? ' active' : ''}`
-          }
-        >
-          {t(TAB_KEYS[tab.id])}
-        </NavLink>
-      ))}
+      {TABS.map((tab) =>
+        tab.id === 'paintings' ? (
+          <a
+            key={tab.id}
+            href={PAINTINGS_EXTERNAL_URL}
+            className="tab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t(TAB_KEYS[tab.id])}
+          </a>
+        ) : (
+          <NavLink
+            key={tab.id}
+            to={tab.to}
+            className={({ isActive }) =>
+              `tab${isTabActive(tab.id, pathname) || isActive ? ' active' : ''}`
+            }
+          >
+            {t(TAB_KEYS[tab.id])}
+          </NavLink>
+        ),
+      )}
     </div>
   )
 }

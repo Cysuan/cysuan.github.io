@@ -26,6 +26,9 @@
   "about": {
     "longBio": "In my spare time, I love tidying up my room, oil painting, and cooking. On weekends, you’ll usually find me going for walks, cycling to catch the breeze, or working up a good sweat playing badminton. I enjoy humor and am always drawn to fun, witty, and creative ideas.",
     "photoAlt": "Portrait of Siyuan Cai in a garden walkway",
+    "blurToggleShow": "Show content below",
+    "blurToggleHide": "Blur content below",
+    "blurToggleTitle": "Toggle blur below tabs (Alt+Shift+B)",
     "lifeMapping": {
       "sectionAria": "Interactive life timeline visualization",
       "ambientLine1": "You can't connect the dots looking forward；",
@@ -100,6 +103,14 @@
   },
   "resume": {
     "sectionAria": "Resume archive layout",
+    "unavailableMessage": "This page isn't available for viewing yet :)",
+    "unavailableAria": "Resume content is temporarily unavailable",
+    "unlockPrompt": "where is the pizza？",
+    "unlockInputLabel": "Answer",
+    "unlockPlaceholder": "Your answer",
+    "unlockButton": "View Resume",
+    "unlockError": "Not quite :)",
+    "unlockFormAria": "Answer the question to view resume",
     "brand": {
       "line1": "Siyuan",
       "line2": "Cai"
@@ -269,12 +280,6 @@
                     "type": "text",
                     "text": "Participated in building an AI news aggregation platform, responsible for content system development and overall content quality control."
                   }
-                ],
-                [
-                  {
-                    "type": "text",
-                    "text": "Defined editorial positioning and iterated content formats (text news, audio-visual media, social media); established evaluation criteria and content selection frameworks; tracked and curated high-quality global AI information sources to build a stable intelligence acquisition network."
-                  }
                 ]
               ]
             },
@@ -285,12 +290,6 @@
                   {
                     "type": "text",
                     "text": "Participated in operations of an AI-powered read-later product, responsible for product cold start execution and copywriting."
-                  }
-                ],
-                [
-                  {
-                    "type": "text",
-                    "text": "Acquired initial seed users, collected and structured user feedback, facilitated requirement organization and product iteration, and established a closed-loop user communication and feedback mechanism; also responsible for brand content production and product messaging support."
                   }
                 ]
               ]
@@ -502,9 +501,27 @@
           "location": "Chengdu",
           "degree": "Sichuan Agricultural University — urban and rural planning",
           "school": "Bachelor",
-          "bodyLines": [
-            "First Prize, 14th “Challenge Cup” Sichuan Provincial Undergraduate Extracurricular Academic and Technological Works Competition.",
-            "Second Prize, “Yuechuang Cup” Urban Planning and Design Competition."
+          "bodyParagraphs": [
+            [
+              {
+                "type": "text",
+                "text": "First Prize, 14th “Challenge Cup” Sichuan Provincial Undergraduate Extracurricular Academic and Technological Works Competition."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "Second Prize, “Yuechuang Cup” Urban Planning and Design Competition."
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "text": "Undergraduate Portfolio",
+                "href": "https://drive.google.com/file/d/1tcGa9nGTUOHOGQPqgFeE2KGtcwqkI0F2/view?usp=sharing",
+                "qrHover": true
+              }
+            ]
           ]
         }
       }

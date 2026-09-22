@@ -26,6 +26,9 @@
   "about": {
     "longBio": "我平时很喜欢打扫房间、画油画、做菜，周末会出门散步、骑车吹风，或者打一场大汗淋漓的羽毛球。喜欢搞笑，喜欢所有好玩好笑的创意。",
     "photoAlt": "照片",
+    "blurToggleShow": "显示下方内容",
+    "blurToggleHide": "模糊下方内容",
+    "blurToggleTitle": "切换首页 Tab 以下模糊遮罩（Alt+Shift+B）",
     "lifeMapping": {
       "sectionAria": "可交互的人生时间线图示",
       "ambientLine1": "You can't connect the dots looking forward；",
@@ -102,6 +105,14 @@
   },
   "resume": {
     "sectionAria": "履历归档页面布局",
+    "unavailableMessage": "该页面暂不支持查看 ：）",
+    "unavailableAria": "履历正文暂不可查看",
+    "unlockPrompt": "where is the pizza？",
+    "unlockInputLabel": "回答",
+    "unlockPlaceholder": "输入回答",
+    "unlockButton": "查看 Resume",
+    "unlockError": "再想想 :)",
+    "unlockFormAria": "回答问题以查看履历",
     "brand": { "line1": "蔡", "line2": "思源" },
     "meta": {
       "aria": "联系与偏好信息",
@@ -371,9 +382,27 @@
           "location": "成都",
           "degree": "四川农业大学，城乡规划",
           "school": "学士",
-          "bodyLines": [
-            "第十四届「挑战杯」四川省大学生课外学术科技作品竞赛省一等奖",
-            "「悦创杯」城市规划设计大赛二等奖"
+          "bodyParagraphs": [
+            [
+              {
+                "type": "text",
+                "text": "第十四届「挑战杯」四川省大学生课外学术科技作品竞赛省一等奖"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "text": "「悦创杯」城市规划设计大赛二等奖"
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "text": "本科作品集",
+                "href": "https://drive.google.com/file/d/1tcGa9nGTUOHOGQPqgFeE2KGtcwqkI0F2/view?usp=sharing",
+                "qrHover": true
+              }
+            ]
           ]
         }
       }

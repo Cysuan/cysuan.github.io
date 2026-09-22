@@ -6,6 +6,7 @@ import { ResumeBehindSortSwitch } from './ResumeBehindSortSwitch'
 import { DualLayerStack } from './ResumeBehindCv'
 import { ResumeDogEarDock } from './ResumeDogEarDock'
 import { ResumeEntryReorderGroup } from './ResumeEntryReorderGroup'
+import { ResumePrivacyGate } from './ResumePrivacyGate'
 import './resumeSection.css'
 import {
   RESUME_EDUCATION_DEFAULT_ORDER,
@@ -234,6 +235,7 @@ export function ResumeSection() {
                           key={`${item.id}-rp-${i}`}
                           paraKey={`${item.id}-${i}`}
                           segments={segments}
+                          portfolioQrAlt={t('resume.behindCv.portfolioQrAlt')}
                         />
                       ))
                     : plainLines.map((line, i) => (
@@ -309,53 +311,55 @@ export function ResumeSection() {
 
   return (
     <div className="resume-viewport" aria-label={t('resume.sectionAria')}>
-      <div className="resume-stack">
-        <main className="resume-main">
-          <section
-            id="resume-education"
-            className="resume-section-block resume-fold-root"
-            aria-label={t('resume.sections.education')}
-          >
-            <div className="resume-section-front resume-page-front-clip">
-              {renderSectionKicker('resume.kicker.academic', true)}
-
-              <ResumeEntryReorderGroup
-                orderKey={educationOrder.map((e) => e.id).join(',')}
+      <ResumePrivacyGate>
+        <div className="resume-stack">
+          <main className="resume-main">
+              <section
+                id="resume-education"
+                className="resume-section-block resume-fold-root"
+                aria-label={t('resume.sections.education')}
               >
-                {educationOrder.map((item) => renderEducationEntry(item))}
-              </ResumeEntryReorderGroup>
-            </div>
-            <ResumeDogEarDock
-              hidden={behindOpen}
-              onOpen={openBehind}
-              label={behindLabel}
-              tooltip={behindTooltip}
-            />
-          </section>
+                <div className="resume-section-front resume-page-front-clip">
+                  {renderSectionKicker('resume.kicker.academic', true)}
 
-          <section
-            id="resume-professional"
-            className="resume-section-block resume-fold-root"
-            aria-label={t('resume.sections.professional')}
-          >
-            <div className="resume-section-front resume-page-front-clip">
-              {renderSectionKicker('resume.kicker.professional')}
+                  <ResumeEntryReorderGroup
+                    orderKey={educationOrder.map((e) => e.id).join(',')}
+                  >
+                    {educationOrder.map((item) => renderEducationEntry(item))}
+                  </ResumeEntryReorderGroup>
+                </div>
+                <ResumeDogEarDock
+                  hidden={behindOpen}
+                  onOpen={openBehind}
+                  label={behindLabel}
+                  tooltip={behindTooltip}
+                />
+              </section>
 
-              <ResumeEntryReorderGroup
-                orderKey={experienceOrder.map((e) => e.id).join(',')}
+              <section
+                id="resume-professional"
+                className="resume-section-block resume-fold-root"
+                aria-label={t('resume.sections.professional')}
               >
-                {experienceOrder.map((item) => renderExperienceEntry(item))}
-              </ResumeEntryReorderGroup>
-            </div>
-            <ResumeDogEarDock
-              hidden={behindOpen}
-              onOpen={openBehind}
-              label={behindLabel}
-              tooltip={behindTooltip}
-            />
-          </section>
-        </main>
-      </div>
+                <div className="resume-section-front resume-page-front-clip">
+                  {renderSectionKicker('resume.kicker.professional')}
+
+                  <ResumeEntryReorderGroup
+                    orderKey={experienceOrder.map((e) => e.id).join(',')}
+                  >
+                    {experienceOrder.map((item) => renderExperienceEntry(item))}
+                  </ResumeEntryReorderGroup>
+                </div>
+                <ResumeDogEarDock
+                  hidden={behindOpen}
+                  onOpen={openBehind}
+                  label={behindLabel}
+                  tooltip={behindTooltip}
+                />
+              </section>
+            </main>
+          </div>
+      </ResumePrivacyGate>
     </div>
   )
 }

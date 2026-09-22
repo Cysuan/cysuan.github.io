@@ -20,19 +20,19 @@ function DocumentLanguageBinding() {
 }
 
 /**
- * Application routes: `/resume` is the default landing; full archive placeholder at `/paintings/full`.
+ * Application routes: `/about` is the default landing; full archive placeholder at `/paintings/full`.
  */
 function App() {
   return (
     <BrowserRouter>
       <DocumentLanguageBinding />
       <Routes>
-        <Route path="/" element={<Navigate to="/resume" replace />} />
+        <Route path="/" element={<Navigate to="/about" replace />} />
         <Route path="/resume" element={<AesthetePage />} />
         <Route path="/about" element={<AesthetePage />} />
         <Route path="/paintings/full" element={<PaintingsFullPlaceholder />} />
         <Route path="/paintings" element={<AesthetePage />} />
-        <Route path="*" element={<Navigate to="/resume" replace />} />
+        <Route path="*" element={<Navigate to="/about" replace />} />
       </Routes>
     </BrowserRouter>
   )
