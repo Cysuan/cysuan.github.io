@@ -1,27 +1,17 @@
-import { type KeyboardEvent, type MouseEvent, useCallback, useEffect, useState } from 'react'
+import { type KeyboardEvent, type MouseEvent, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const BOX_SRC = '/about/tutoring-card/box.png'
 const CARD_FRONT_SRC = '/about/tutoring-card/card-front.png'
 const CARD_BACK_SRC = '/about/tutoring-card/card-back.png'
 
-export type TutoringBusinessCardProps = {
-  /** 面板关闭或切换节点时重置交互状态 */
-  resetKey: string
-}
-
 /**
  * 「野生物理老师」详情页名片展示：悬停纸盒浮现正面，点击翻转至背面。
  */
-export function TutoringBusinessCard({ resetKey }: TutoringBusinessCardProps) {
+export function TutoringBusinessCard() {
   const { t } = useTranslation()
   const [revealed, setRevealed] = useState(false)
   const [flipped, setFlipped] = useState(false)
-
-  useEffect(() => {
-    setRevealed(false)
-    setFlipped(false)
-  }, [resetKey])
 
   const onReveal = useCallback(() => setRevealed(true), [])
   const onHide = useCallback(() => {

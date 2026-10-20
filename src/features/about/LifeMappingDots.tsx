@@ -1,12 +1,12 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './lifeMappingDots.css'
 import { getLifeMappingNodeCopyRows } from './lifeMappingCopy'
-import { TutoringBusinessCard } from './TutoringBusinessCard'
+import { LifeMappingStoryDialog } from './LifeMappingStoryDialog'
+import type { LifeMappingStory } from './lifeMappingStory'
 import {
   LIFE_MAPPING_EDGES,
   LIFE_MAPPING_TOPOLOGY,
-  type LifeMappingNodeKind,
   type LifeMappingLabelPlacement,
   type LifeMappingTopoNode,
 } from './lifeMappingGraph'
@@ -33,54 +33,6 @@ type RuntimeLMLink = {
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg'
-
-type RichTextToken =
-  | { type: 'text'; value: string }
-  | { type: 'bold'; value: string }
-
-/**
- * Very small inline formatter for panel copy.
- * - `**bold**` renders as `<strong>`
- * - `\n\n` starts a new paragraph
- *
- * @param input - Raw copy string
- */
-function tokenizeRichText(input: string): RichTextToken[] {
-  const tokens: RichTextToken[] = []
-  const re = /\*\*(.+?)\*\*/g
-  let lastIndex = 0
-  let match: RegExpExecArray | null
-  while ((match = re.exec(input))) {
-    const before = input.slice(lastIndex, match.index)
-    if (before) tokens.push({ type: 'text', value: before })
-    tokens.push({ type: 'bold', value: match[1] ?? '' })
-    lastIndex = match.index + match[0].length
-  }
-  const rest = input.slice(lastIndex)
-  if (rest) tokens.push({ type: 'text', value: rest })
-  return tokens
-}
-
-/**
- * @param desc - Copy string supporting `\n\n` paragraphs and `**bold**`
- */
-function renderPanelDesc(desc: string): ReactNode {
-  const paragraphs = desc.split(/\n{2,}/g).filter(Boolean)
-  return paragraphs.map((p, pIdx) => {
-    const inline = tokenizeRichText(p)
-    return (
-      <p key={`lm-p-${pIdx}`}>
-        {inline.map((t, idx) =>
-          t.type === 'bold' ? (
-            <strong key={`lm-b-${pIdx}-${idx}`}>{t.value}</strong>
-          ) : (
-            <span key={`lm-t-${pIdx}-${idx}`}>{t.value}</span>
-          ),
-        )}
-      </p>
-    )
-  })
-}
 
 /**
  * @param source - Line start
@@ -126,19 +78,6 @@ function linkKey(sourceId: string, targetId: string): string {
 }
 
 /**
- * @param el - SVG node group or other target element
- */
-function isElementFullyOutsideViewport(el: Element): boolean {
-  const rect = el.getBoundingClientRect()
-  return (
-    rect.bottom <= 0 ||
-    rect.top >= window.innerHeight ||
-    rect.right <= 0 ||
-    rect.left >= window.innerWidth
-  )
-}
-
-/**
  * @param r - Node circle radius
  * @param placement - Label placement hint
  */
@@ -161,22 +100,6 @@ function getNodeLabelLayout(
   return { x: r + gapX, y: r + gapY, anchor: 'start' }
 }
 
-/** Outgoing edge target shown in the detail panel “引向” list. */
-interface LifeMappingLedToItem {
-  id: string
-  label: string
-}
-
-interface LifeMappingPanelModel {
-  id: string
-  date: string
-  tag: string
-  label: string
-  desc: string
-  type: LifeMappingNodeKind
-  ledTo: LifeMappingLedToItem[]
-}
-
 /**
  * Interactive “connecting the dots” constellation (reference design) embedded on About.
  */
@@ -184,7 +107,6 @@ export function LifeMappingDots() {
   const { t, i18n } = useTranslation()
   const wrapRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
-  const panelRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
 
@@ -202,7 +124,7 @@ export function LifeMappingDots() {
   /** Opens a node panel + chart highlight from the “引向” list (set in SVG mount effect). */
   const openNodeByIdRef = useRef<(nodeId: string) => void>(() => {})
 
-  const [panel, setPanel] = useState<LifeMappingPanelModel | null>(null)
+  const [panel, setPanel] = useState<LifeMappingStory | null>(null)
   const [dimensions, setDimensions] = useState({ w: 0, h: 0 })
 
   /** Rebuild topology when container size or copy language changes. */
@@ -235,102 +157,6 @@ export function LifeMappingDots() {
     })
     wrapRef.current?.classList.remove('life-mapping--cursor-hover')
   }, [])
-
-  useEffect(() => {
-    if (!panel) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closePanel()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [panel, closePanel])
-
-  /** Click outside the detail drawer closes it (panel and nodes stop propagation). */
-  useEffect(() => {
-    if (!panel) return
-    const onDocClick = () => closePanel()
-    document.addEventListener('click', onDocClick)
-    return () => document.removeEventListener('click', onDocClick)
-  }, [panel, closePanel])
-
-  /**
-   * Auto-close the detail panel when the constellation becomes "too squeezed" in view.
-   * Rule: if the visible width of the Life Mapping area is < 1/3 of the viewport width.
-   */
-  useEffect(() => {
-    if (!panel) return
-    const el = wrapRef.current
-    if (!el) return
-
-    const thresholdPx = () =>
-      (typeof window !== 'undefined' ? window.innerWidth : 0) / 3
-
-    const checkAndClose = (visibleWidth: number) => {
-      if (visibleWidth > 0 && visibleWidth < thresholdPx()) closePanel()
-    }
-
-    // Run once immediately (in case layout already satisfies the close condition).
-    checkAndClose(el.getBoundingClientRect().width)
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0]
-        if (!entry) return
-        checkAndClose(entry.intersectionRect.width)
-      },
-      {
-        root: null,
-        // Be sensitive to width changes across scrolling and layout shifts.
-        threshold: [0, 0.01, 0.1, 0.2, 0.33, 0.5, 1],
-      },
-    )
-
-    io.observe(el)
-    return () => io.disconnect()
-  }, [panel, closePanel])
-
-  /**
-   * Auto-close the detail panel when the selected dot leaves the viewport
-   * (e.g. user scrolls the About page while a node panel is open).
-   */
-  useEffect(() => {
-    if (!panel) return
-
-    const nodeId = panel.id
-    let rafId = 0
-
-    const checkAndClose = () => {
-      if (activeNodeIdRef.current !== nodeId) return
-      const nodeEl = document.getElementById(`node-${nodeId}`)
-      if (!nodeEl) return
-      if (isElementFullyOutsideViewport(nodeEl)) closePanel()
-    }
-
-    const scheduleCheck = () => {
-      cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(checkAndClose)
-    }
-
-    document.addEventListener('scroll', scheduleCheck, { capture: true, passive: true })
-    window.addEventListener('resize', scheduleCheck, { passive: true })
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry && !entry.isIntersecting) closePanel()
-      },
-      { threshold: 0 },
-    )
-
-    const nodeEl = document.getElementById(`node-${nodeId}`)
-    if (nodeEl) io.observe(nodeEl)
-
-    return () => {
-      cancelAnimationFrame(rafId)
-      document.removeEventListener('scroll', scheduleCheck, true)
-      window.removeEventListener('resize', scheduleCheck)
-      io.disconnect()
-    }
-  }, [panel, closePanel])
 
   /** Mount / refresh SVG simulation. */
   useEffect(() => {
@@ -443,13 +269,15 @@ export function LifeMappingDots() {
     }
 
     const openNodePanel = (node: RuntimeLMNode) => {
+      // Keep the constellation directly behind the transparent reading card.
+      if (!activeNodeIdRef.current) wrap.scrollIntoView({ block: 'center', behavior: 'instant' })
       activeNodeIdRef.current = node.id
       pinnedLabelIdsRef.current.add(node.id)
       node.element.classList.add('label-pinned')
       applyNodeHighlight(node.id, false)
 
       const outgoing = runtimeLinks.filter((l) => l.source.id === node.id)
-      const ledTo: LifeMappingLedToItem[] = outgoing.map((l) => ({
+      const ledTo: LifeMappingStory['ledTo'] = outgoing.map((l) => ({
         id: l.target.id,
         label: l.target.label,
       }))
@@ -457,14 +285,12 @@ export function LifeMappingDots() {
       setPanel({
         id: node.id,
         date: node.date,
-        tag: node.tag ?? typeLabel(node.type),
+        tag: node.tag ?? t(`about.lifeMapping.type.${node.type}`),
         label: node.label,
         desc: node.desc,
         type: node.type,
         ledTo,
       })
-
-      panelRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
     openNodeByIdRef.current = (nodeId: string) => {
@@ -476,17 +302,24 @@ export function LifeMappingDots() {
       const g = node.element
       g.classList.add('node')
       g.setAttribute('id', `node-${node.id}`)
+      g.setAttribute('role', 'button')
+      g.setAttribute('tabindex', '0')
+      g.setAttribute('aria-label', `${node.label} — ${t('about.lifeMapping.openStory')}`)
+      g.setAttribute('aria-haspopup', 'dialog')
 
       const hitbox = document.createElementNS(SVG_NS, 'circle')
       hitbox.classList.add('hitbox')
-      hitbox.setAttribute('r', String(node.r + 15))
+      hitbox.setAttribute('r', String(Math.max(node.r + 15, 22)))
 
       const circle = document.createElementNS(SVG_NS, 'circle')
       circle.setAttribute('r', String(node.r))
 
       const text = document.createElementNS(SVG_NS, 'text')
       text.textContent = node.label
-      const labelLayout = getNodeLabelLayout(node.r, node.labelPlacement)
+      const placement = dimensions.w < 600
+        ? (node.x > 65 ? 'leftDown' : node.x < 28 ? 'rightDown' : 'up')
+        : node.labelPlacement
+      const labelLayout = getNodeLabelLayout(node.r, placement)
       text.setAttribute('x', String(labelLayout.x))
       text.setAttribute('y', String(labelLayout.y))
       text.setAttribute('text-anchor', labelLayout.anchor)
@@ -498,8 +331,17 @@ export function LifeMappingDots() {
 
       g.addEventListener('mouseenter', () => handleNodeHover(node.id))
       g.addEventListener('mouseleave', handleNodeLeave)
+      g.addEventListener('focus', () => handleNodeHover(node.id))
+      g.addEventListener('blur', handleNodeLeave)
+      g.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          openNodePanel(node)
+        }
+      })
       g.addEventListener('click', (e) => {
         e.stopPropagation()
+        g.focus()
         openNodePanel(node)
       })
 
@@ -532,7 +374,7 @@ export function LifeMappingDots() {
       openNodeByIdRef.current = () => {}
       cancelAnimationFrame(rafMainRef.current)
     }
-  }, [closePanel, dimensions.w, dimensions.h, i18n.language])
+  }, [closePanel, dimensions.w, dimensions.h, i18n.language, t])
 
   /**
    * @param nodeId - Target topology node id (e.g. `n2`)
@@ -574,11 +416,10 @@ export function LifeMappingDots() {
     }
   }, [])
 
-  const typeLabel = (k: LifeMappingNodeKind) => t(`about.lifeMapping.type.${k}`)
-
   return (
     <div className="about-life-mapping-shell">
       <section
+        id="life-mapping-dots"
         ref={wrapRef}
         className="about-life-mapping"
         aria-label={t('about.lifeMapping.sectionAria')}
@@ -597,56 +438,14 @@ export function LifeMappingDots() {
           className="life-mapping-network-canvas"
           width="100%"
           height="100%"
-          aria-hidden
+          role="group"
+          aria-label={t('about.lifeMapping.sectionAria')}
         />
       </section>
 
-      <aside
-        ref={panelRef}
-        className={`life-mapping-detail-panel${panel ? ' life-mapping-detail-panel--open' : ''}`}
-        aria-hidden={!panel}
-        onClick={(e) => e.stopPropagation()}
-        {...(panel ? { role: 'complementary' as const } : {})}
-      >
-        {panel ? (
-          <>
-            <div className="life-mapping-detail-meta">
-              {panel.date} • {panel.tag}
-            </div>
-            <h2 className="life-mapping-detail-title">{panel.label}</h2>
-            <div className="life-mapping-detail-body">
-              {renderPanelDesc(panel.desc)}
-            </div>
-            {panel.id === 'n7' ? <TutoringBusinessCard resetKey={panel.id} /> : null}
-            {panel.ledTo.length > 0 ? (
-              <div className="life-mapping-detail-connections">
-                <div className="life-mapping-detail-connections-title">
-                  {t('about.lifeMapping.ledTo')}
-                </div>
-                <ul className="life-mapping-connection-list">
-                  {panel.ledTo.map((item) => (
-                    <li
-                      key={`${panel.id}-out-${item.id}`}
-                      className="life-mapping-connection-item"
-                    >
-                      <button
-                        type="button"
-                        className="life-mapping-connection-link"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          navigateToLedToNode(item.id)
-                        }}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </>
-        ) : null}
-      </aside>
+      {panel ? (
+        <LifeMappingStoryDialog story={panel} onClose={closePanel} onNavigate={navigateToLedToNode} />
+      ) : null}
     </div>
   )
 }

@@ -26,16 +26,18 @@
   "about": {
     "longBio": "我平时很喜欢打扫房间、画油画、做菜，周末会出门散步、骑车吹风，或者打一场大汗淋漓的羽毛球。喜欢搞笑，喜欢所有好玩好笑的创意。",
     "photoAlt": "照片",
-    "blurToggleShow": "显示下方内容",
-    "blurToggleHide": "模糊下方内容",
-    "blurToggleTitle": "切换首页 Tab 以下模糊遮罩（Alt+Shift+B）",
     "lifeMapping": {
+      "exploreHint": "anyway, tap a dot below.",
+      "startExploring": "从一个点开始",
+      "openStory": "阅读故事",
+      "previousStory": "上一个",
+      "nextStory": "下一个",
       "sectionAria": "可交互的人生时间线图示",
       "ambientLine1": "You can't connect the dots looking forward；",
       "ambientLine2": "you can only connect them looking backward.",
       "heading": "Dots.",
       "subheading": "一段经历的星图",
-      "ledTo": "引向",
+      "ledTo": "后来，",
       "closePanel": "关闭详情",
       "type": {
         "life": "生活",
@@ -57,9 +59,10 @@
         "才会发现它们其实连在一起、指向一个结果。"
       ],
       "paragraphs": [
-        "我特别喜欢乔布斯 {{connectingDots}} 的说法。",
-        "所以自我介绍我想从我经历过的那些 Dots 出发，借由那些印象深刻的经历、兴奋点和火花去重新认识自己。同时非常好奇有一天回望时，那些 Dots 会连成什么样的形态，是线，或网，或一条河流分岔再汇合？",
-        "Connecting the dots 的概念也改变了我看待事情的角度。我相信生命中绝大部分的 Dots 是没有附带说明书的，它们仅仅是被我相信、被我喜欢、被我经历着。而那些暂时派不上用场的热爱或冲动，也会在未来的某天找到位置。我正在学着更具开放性地平视每一个 Dot，看到所有经历中更积极的一面，尝试去理解经历之间的关联。"
+        "我有点喜欢乔布斯 {{connectingDots}} 的说法。所以，自我介绍想从我经历过的那些 Dots 出发：一些喜欢的事、相信的东西，做成的和没做成的，有的没的念头。",
+        "总觉得，一个人的样子，多少会藏在这些事情里。我想借由这些点重新认识自己。同时很好奇，有一天回望时，这些 Dots 会连成什么样的形态？",
+        "我相信生命中绝大部分的 Dots 都没有附带说明书。它们先是被我喜欢、被我相信、被我经历着，那些暂时派不上用场的热爱和冲动，也许会在未来的某天找到位置。我正在学着平视每一个 Dot，看到所有经历中更积极的一面，尝试去理解经历之间的关联。",
+        "当然，本页的初心还是为求职准备，闪光的部分难免多分到一点版面……"
       ]
     }
   },
@@ -104,6 +107,7 @@
     "fullBack": "返回绘画概览"
   },
   "resume": {
+    "privacyNote": "暂不可见，答对即解锁。",
     "sectionAria": "履历归档页面布局",
     "unavailableMessage": "该页面暂不支持查看 ：）",
     "unavailableAria": "履历正文暂不可查看",

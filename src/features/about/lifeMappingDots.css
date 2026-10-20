@@ -23,8 +23,8 @@
 
   position: relative;
   width: 100%;
-  min-height: min(92vh, 900px);
-  margin-top: var(--space-xl);
+  height: clamp(520px, 80svh, 800px);
+  margin-top: 1.5rem;
   background: var(--lm-paper);
   color: var(--lm-ink-black);
   overflow: hidden;
@@ -187,169 +187,298 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
   fill: transparent;
 }
 
-/* Detail drawer — white surface, no page overlay */
-.life-mapping-detail-panel {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  width: min(450px, 100vw);
-  background: rgba(220, 229, 227, 0.8);
-  backdrop-filter: blur(5px) saturate(80%);
-  -webkit-backdrop-filter: blur(7px) saturate(80%);
-  border-left: 1px solid rgba(72, 69, 60, 0.08);
-  padding: 60px;
-  transform: translateX(100%);
-  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-  z-index: 50;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.04);
-  cursor: auto;
-  /** Hide scrollbar but keep scroll available */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge Legacy */
+/* An inline aside at the end of the essay, with the original colored pulse. */
+.life-mapping-invitation {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  min-height: 44px;
+  margin: 0 0 0 0.2em;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 400;
+  white-space: nowrap;
+  vertical-align: baseline;
+  cursor: pointer;
+}
+.life-mapping-invitation-copy {
+  background: linear-gradient(90deg, #5170ff, #d64b9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: life-mapping-invitation-pulse 3.5s ease-in-out infinite;
+}
+.life-mapping-invitation-arrow { color: #9b7dcd; transition: transform 0.25s ease; }
+.life-mapping-invitation:hover .life-mapping-invitation-arrow { transform: translate(2px, 2px); }
+.life-mapping-invitation:hover .life-mapping-invitation-copy { animation: none; opacity: 1; }
+@keyframes life-mapping-invitation-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
 }
 
-.life-mapping-detail-panel::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+.about-life-mapping .life-mapping-network-canvas g.node:focus-visible {
+  outline: none;
+}
+.about-life-mapping .life-mapping-network-canvas g.node:focus-visible .hitbox {
+  stroke: #2a9da3;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+.about-life-mapping .life-mapping-network-canvas g.node:focus-visible text {
+  opacity: 1;
+  fill: #000;
+}
+
+/* Native dialog places the story above the site chrome and keeps keyboard focus inside. */
+.life-mapping-detail-panel {
+  --lm-font-hand: 'Caveat', cursive;
+  --lm-font-serif: var(--font-serif);
+  --lm-font-sans: var(--font-sans);
+  --lm-accent-rust: #2a9da3;
+  box-sizing: border-box;
+  width: min(680px, calc(100vw - 64px));
+  max-width: none;
+  max-height: calc(100dvh - 64px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.64);
+  backdrop-filter: blur(2px) saturate(110%);
+  -webkit-backdrop-filter: blur(2px) saturate(110%);
+  color: #1d1d1f;
+  box-shadow: 0 24px 96px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  cursor: auto;
 }
 
 .life-mapping-detail-panel *,
 .life-mapping-detail-panel *::before,
-.life-mapping-detail-panel *::after {
-  cursor: auto;
-}
+.life-mapping-detail-panel *::after { box-sizing: border-box; }
 
-.life-mapping-detail-panel.life-mapping-detail-panel--open {
-  transform: translateX(0);
-}
-
-.life-mapping-detail-panel .life-mapping-detail-meta {
-  font-family: var(--lm-font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--lm-accent-rust);
-  margin-bottom: 1rem;
+.life-mapping-detail-panel[open] {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  animation: life-mapping-story-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
-.life-mapping-detail-panel .life-mapping-detail-meta::after {
-  content: '';
-  height: 1px;
-  flex-grow: 1;
-  background: var(--lm-accent-fade);
+.life-mapping-detail-panel[open].is-closing {
+  animation: life-mapping-story-leave 0.22s ease both;
+  pointer-events: none;
+}
+.life-mapping-detail-panel.is-closing::backdrop {
+  animation: life-mapping-backdrop-enter 0.22s ease reverse both;
 }
 
-.life-mapping-detail-panel .life-mapping-detail-title {
-  font-family: var(--lm-font-hand);
-  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
-  line-height: 1.1;
-  color: var(--lm-ink-black);
-  margin: 0 0 2rem;
-  font-weight: 500;
+.life-mapping-detail-panel::backdrop {
+  background: rgba(30, 43, 38, 0.06);
+  animation: life-mapping-backdrop-enter 0.3s ease both;
 }
 
-.life-mapping-detail-panel .life-mapping-detail-body {
-  font-family: var(--lm-font-serif);
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--lm-ink-black);
-}
-
-.life-mapping-detail-panel .life-mapping-detail-body p {
-  margin: 0 0 1.5rem;
-}
-
-.life-mapping-detail-panel .life-mapping-detail-connections {
-  margin-top: auto;
-  padding-top: 3rem;
-  border-top: 1px solid var(--lm-ink-faded);
-}
-
-.life-mapping-detail-panel .life-mapping-detail-connections-title {
-  font-family: var(--lm-font-sans);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--lm-ink-medium);
-  margin-bottom: 1rem;
-}
-
-.life-mapping-detail-panel .life-mapping-connection-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.life-mapping-detail-panel .life-mapping-connection-item {
-  margin-bottom: 0.5rem;
+.life-mapping-story-surface {
+  position: relative;
   display: flex;
-  align-items: center;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  max-height: inherit;
 }
 
-.life-mapping-detail-panel .life-mapping-connection-item:hover,
-.life-mapping-detail-panel .life-mapping-connection-item:focus-within {
-  opacity: 1;
+.life-mapping-story-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px;
+  pointer-events: none;
 }
-
-.life-mapping-detail-panel .life-mapping-connection-link {
-  font-family: var(--lm-font-serif);
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--lm-ink-black);
+.life-mapping-sheet-grip { display: none; }
+.life-mapping-story-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(118, 118, 128, 0.06);
+  color: #6e6e73;
   cursor: pointer;
-  text-align: left;
+  pointer-events: auto;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.life-mapping-story-close:hover { background: rgba(118, 118, 128, 0.12); color: #1d1d1f; }
+.life-mapping-detail-panel button:focus-visible,
+.life-mapping-invitation:focus-visible {
+  outline: 2px solid #5170ff;
+  outline-offset: 3px;
+}
+
+.life-mapping-story-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #cdd5ca transparent;
+}
+.life-mapping-story-content {
+  padding: 64px 56px 36px;
+  animation: life-mapping-copy-enter 0.25s ease both;
+}
+.life-mapping-detail-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  font: 400 0.75rem/1.5 var(--font-sans);
+  color: #86868b;
 }
-
-.life-mapping-detail-panel .life-mapping-connection-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.life-mapping-detail-title {
+  margin: 0 0 28px;
+  font: 600 clamp(1.5rem, 3vw, 2rem)/1.35 var(--font-sans);
+  letter-spacing: -0.035em;
+  color: #1d1d1f;
+  overflow-wrap: anywhere;
 }
-
-.life-mapping-detail-panel .life-mapping-connection-link:focus-visible {
-  outline: 2px solid var(--lm-accent-rust);
-  outline-offset: 2px;
+.life-mapping-detail-body {
+  font: 400 0.9375rem/1.95 var(--font-sans);
+  color: #515154;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
 }
+.life-mapping-detail-body p { margin: 0 0 1.25rem; }
+.life-mapping-detail-body p:last-child { margin-bottom: 0; }
+.life-mapping-detail-body strong { font-weight: 500; color: #1d1d1f; }
+.life-mapping-detail-connections {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 14px;
+  margin-top: 36px;
+}
+.life-mapping-detail-connections-title {
+  margin: 0;
+  font: 400 0.8125rem/1.7 var(--font-sans);
+  color: #86868b;
+}
+.life-mapping-connection-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.life-mapping-connection-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 5px 0;
+  border: 0;
+  background: none;
+  color: #515154;
+  text-align: left;
+  font: 400 0.8125rem/1.7 var(--font-sans);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.life-mapping-connection-link:hover { color: #0071e3; }
+.life-mapping-connection-link svg { flex-shrink: 0; transition: transform 0.2s ease; }
+.life-mapping-connection-link:hover svg { transform: translateX(2px); }
+.life-mapping-story-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 0 20px 20px;
+}
+.life-mapping-story-footer button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(118, 118, 128, 0.06);
+  border: 0;
+  border-radius: 50%;
+  color: #6e6e73;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.life-mapping-story-footer button:hover:not(:disabled) { color: #1d1d1f; background: rgba(118, 118, 128, 0.12); }
+.life-mapping-story-footer button:disabled { opacity: 0.25; cursor: default; }
 
-.life-mapping-detail-panel .life-mapping-connection-item::before {
-  content: '→';
-  margin-right: 10px;
-  color: var(--lm-accent-rust);
-  font-style: normal;
+@keyframes life-mapping-story-enter {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes life-mapping-copy-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes life-mapping-story-leave {
+  to { opacity: 0; transform: translateY(12px) scale(0.98); }
+}
+@keyframes life-mapping-backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 600px) {
+  .about-life-mapping .life-mapping-ambient-quote {
+    top: 20px;
+    left: 12px;
+    font-size: 1.05rem;
+    max-width: calc(100% - 24px);
+  }
+  .life-mapping-detail-panel {
+    width: 100%;
+    max-height: calc(100dvh - max(20px, env(safe-area-inset-top)));
+    margin: auto 0 0;
+    border-radius: 22px 22px 0 0;
+    border-bottom: 0;
+    animation-name: life-mapping-sheet-enter;
+    transform: translateY(var(--sheet-drag, 0px));
+  }
+  .life-mapping-detail-panel[open].is-closing { animation-name: life-mapping-sheet-leave; }
+  .life-mapping-story-header { padding: 22px 12px 0; }
+  .life-mapping-sheet-grip {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 26px;
+    touch-action: none;
+    pointer-events: auto;
+  }
+  .life-mapping-sheet-grip span { width: 36px; height: 4px; border-radius: 99px; background: #d6dcd0; }
+  .life-mapping-story-content { padding: 72px 28px 28px; }
+  .life-mapping-detail-title { font-size: 1.5rem; margin-bottom: 24px; }
+  .life-mapping-detail-body { font-size: 0.9375rem; }
+  .life-mapping-story-footer { padding: 0 16px max(16px, env(safe-area-inset-bottom)); }
+  @keyframes life-mapping-sheet-enter {
+    from { opacity: 0; transform: translateY(48px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes life-mapping-sheet-leave {
+    to { opacity: 0; transform: translateY(100%); }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-life-mapping .life-mapping-network-canvas path.link,
   .about-life-mapping .life-mapping-network-canvas g.node circle:not(.hitbox),
-  .about-life-mapping .life-mapping-network-canvas g.node text,
-  .life-mapping-detail-panel {
-    transition: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .about-life-mapping .life-mapping-ambient-quote {
-    top: 24px;
-    left: 24px;
-    font-size: 1.45rem;
-  }
-
-  .life-mapping-detail-panel {
-    padding: 48px 28px;
-  }
+  .about-life-mapping .life-mapping-network-canvas g.node text { transition: none; }
+  .life-mapping-detail-panel[open],
+  .life-mapping-detail-panel::backdrop,
+  .life-mapping-story-content,
+  .life-mapping-invitation-copy { animation: none; }
 }
 
 /** 「野生物理老师」详情页 — 纸盒 + 悬停名片 + 点击翻转 */

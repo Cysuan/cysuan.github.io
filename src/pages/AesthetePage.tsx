@@ -2,7 +2,6 @@ import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { AboutSection } from '../features/about/AboutSection'
-import { useAboutBelowTabsBlur } from '../features/about/useAboutBelowTabsBlur'
 import { AestheteFeedTabs } from '../features/aesthete/AestheteFeedTabs'
 import { AestheteHeader } from '../features/aesthete/AestheteHeader'
 import { AestheteHero } from '../features/aesthete/AestheteHero'
@@ -17,12 +16,10 @@ import '../styles/aesthete.css'
 export function AesthetePage() {
   const location = useLocation()
   const { pathname } = location
-  const { i18n, t } = useTranslation()
+  const { i18n } = useTranslation()
   const uiLang = i18n.language.startsWith('zh') ? 'zh' : 'en'
   const isAboutView = pathname === '/about'
-  const showHero = isAboutView
-  const { enabled: aboutBelowTabsBlur, toggle: toggleAboutBelowTabsBlur } =
-    useAboutBelowTabsBlur(isAboutView)
+  const showHero = pathname === '/resume'
 
   /**
    * After route change: reset scroll position (no anchor jumps).
@@ -38,50 +35,19 @@ export function AesthetePage() {
         {showHero ? <AestheteHero /> : null}
         <AestheteFeedTabs />
 
-        <div
-          className={
-            isAboutView && aboutBelowTabsBlur
-              ? 'page-below-tabs page-below-tabs--blur-shell'
-              : 'page-below-tabs'
-          }
-        >
-          <div
-            className={
-              isAboutView && aboutBelowTabsBlur
-                ? 'page-below-tabs-inner is-obscured'
-                : 'page-below-tabs-inner'
-            }
-            aria-hidden={isAboutView && aboutBelowTabsBlur ? true : undefined}
-          >
-            {pathname === '/resume' ? (
-              <section id="resume" className="resume-section">
-                <ResumeSection />
-              </section>
-            ) : null}
-
-            {isAboutView ? <AboutSection /> : null}
-
-            {pathname === '/paintings' ? <PaintingsGallery /> : null}
-
-            <SiteFooter />
-          </div>
-
-          {isAboutView && aboutBelowTabsBlur ? (
-            <div className="page-below-tabs-blur-overlay" aria-hidden="true" />
+        <div className="page-below-tabs">
+          {pathname === '/resume' ? (
+            <section id="resume" className="resume-section">
+              <ResumeSection />
+            </section>
           ) : null}
-        </div>
 
-        {isAboutView ? (
-          <button
-            type="button"
-            className="about-blur-owner-toggle"
-            onClick={toggleAboutBelowTabsBlur}
-            aria-pressed={aboutBelowTabsBlur}
-            title={t('about.blurToggleTitle')}
-          >
-            {aboutBelowTabsBlur ? t('about.blurToggleShow') : t('about.blurToggleHide')}
-          </button>
-        ) : null}
+          {isAboutView ? <AboutSection /> : null}
+
+          {pathname === '/paintings' ? <PaintingsGallery /> : null}
+
+          <SiteFooter />
+        </div>
       </div>
     </div>
   )

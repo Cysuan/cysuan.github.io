@@ -10,7 +10,7 @@ export function AestheteHeader() {
 
   return (
     <header className="site-chrome-header">
-      <Link to={{ pathname: '/about' }} className="logo">
+      <Link to="/resume" className="logo">
         {t('site.logo')}
       </Link>
       <LanguageSwitcher />

@@ -26,16 +26,18 @@
   "about": {
     "longBio": "In my spare time, I love tidying up my room, oil painting, and cooking. On weekends, you’ll usually find me going for walks, cycling to catch the breeze, or working up a good sweat playing badminton. I enjoy humor and am always drawn to fun, witty, and creative ideas.",
     "photoAlt": "Portrait of Siyuan Cai in a garden walkway",
-    "blurToggleShow": "Show content below",
-    "blurToggleHide": "Blur content below",
-    "blurToggleTitle": "Toggle blur below tabs (Alt+Shift+B)",
     "lifeMapping": {
+      "exploreHint": "anyway, tap a dot below.",
+      "startExploring": "Start with a dot",
+      "openStory": "Read story",
+      "previousStory": "Previous",
+      "nextStory": "Next",
       "sectionAria": "Interactive life timeline visualization",
       "ambientLine1": "You can't connect the dots looking forward；",
       "ambientLine2": "you can only connect them looking backward.",
       "heading": "Dots.",
       "subheading": "A constellation of experiences",
-      "ledTo": "Led to",
+      "ledTo": "And then…",
       "closePanel": "Close detail panel",
       "type": {
         "life": "Life",
@@ -50,9 +52,10 @@
     "dotsPhilosophy": {
       "title": "On connecting the dots",
       "paragraphs": [
-        "I am a huge believer in Steve Jobs’ philosophy of {{connectingDots}}.",
-        "So I want to introduce myself starting from the dots I’ve encountered along the way—through memorable experiences, moments of excitement, and sparks of curiosity that helped me rediscover who I am. I’m also genuinely curious about what shape those dots might form when I look back one day—whether they become a line, a network, or perhaps a river that branches out and eventually converges again.",
-        "This idea of connecting the dots has also changed the way I see things. I’ve come to believe that most of the dots in life don’t come with an instruction manual. They simply exist to be believed in, to be felt, to be lived through. Even interests or impulses that don’t seem useful at the time may eventually find their place in the future. I’m learning to meet each dot with a more open perspective, to look at every experience on more equal footing, and to see the more constructive side of what has happened, while trying to understand how these experiences might be connected."
+        "I have a soft spot for Steve Jobs’ idea of {{connectingDots}}. So I’d like to introduce myself through the Dots I’ve collected along the way: things I’ve enjoyed, things I’ve believed in, things that worked out and things that didn’t, and all the little thoughts in between.",
+        "I tend to think a person’s character shows up in these things. I’m using these dots to get to know myself again. And I’m curious what shape they’ll make when I look back one day.",
+        "I believe most Dots in life arrive without instructions. At first, they’re simply things I like, believe in, and live through. Interests and impulses that seem to serve no purpose now may find their place someday. I’m learning to give each Dot equal consideration, to see the good in every experience, and to understand how they connect.",
+        "Of course, this page started as part of a job search, so the brighter moments inevitably get a little more space…"
       ],
       "connectingDotsPhrase": "connecting the dots",
       "connectingDotsHoverSegments": [
@@ -102,6 +105,7 @@
     "fullBack": "Back to overview"
   },
   "resume": {
+    "privacyNote": "Private for now. Answer correctly to unlock.",
     "sectionAria": "Resume archive layout",
     "unavailableMessage": "This page isn't available for viewing yet :)",
     "unavailableAria": "Resume content is temporarily unavailable",

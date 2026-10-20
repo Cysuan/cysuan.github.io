@@ -9,9 +9,9 @@ type TabSpec = {
 const PAINTINGS_EXTERNAL_URL = 'https://www.xuanpaints.com'
 
 const TABS: TabSpec[] = [
+  { id: 'resume', to: '/resume' },
   { id: 'about', to: '/about' },
   { id: 'paintings', to: '/paintings' },
-  { id: 'resume', to: '/resume' },
 ]
 
 const TAB_KEYS: Record<TabSpec['id'], 'tabs.resume' | 'tabs.about' | 'tabs.paintings'> = {

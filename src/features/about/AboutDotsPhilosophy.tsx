@@ -51,6 +51,22 @@ export function AboutDotsPhilosophy() {
         {paragraphs.map((paragraph, index) => (
           <p key={index}>
             {renderParagraphContent(paragraph, phrase, hoverSegments, attribution)}
+            {index === paragraphs.length - 1 ? (
+              <>
+                {' '}
+                <button
+                  type="button"
+                  className="life-mapping-invitation"
+                  onClick={() => document.getElementById('life-mapping-dots')?.scrollIntoView({
+                    block: 'center',
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+                  })}
+                >
+                  <span className="life-mapping-invitation-copy">{t('about.lifeMapping.exploreHint')}</span>
+                  <span className="life-mapping-invitation-arrow" aria-hidden="true">↘</span>
+                </button>
+              </>
+            ) : null}
           </p>
         ))}
       </div>

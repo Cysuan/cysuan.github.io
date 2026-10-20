@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { SocialXIcon } from './SocialXIcon'
 import { SOCIAL_ROW_ITEMS } from './socialRowConfig'
+import { useResumePrivacy } from '../resume/useResumePrivacy'
 
 function MailIcon() {
   return (
@@ -24,6 +25,17 @@ function MailIcon() {
 export function SocialLinks() {
   const { t, i18n } = useTranslation()
   const isZh = i18n.language.startsWith('zh')
+  const unlocked = useResumePrivacy()
+
+  if (!unlocked) {
+    return (
+      <div className="author-social-row author-social-row--locked" aria-hidden="true" inert>
+        {Array.from({ length: SOCIAL_ROW_ITEMS.length + 1 }, (_, index) => (
+          <span className="social-private-placeholder" key={index} />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className="author-social-row">

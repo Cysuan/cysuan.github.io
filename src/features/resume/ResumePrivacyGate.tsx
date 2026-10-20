@@ -1,8 +1,6 @@
 import { type FormEvent, type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-/** sessionStorage 键：当前浏览器 session 内解锁履历正文 */
-const RESUME_UNLOCK_SESSION_KEY = 'variant.resume.unlocked'
+import { unlockResumePrivacy, useResumePrivacy } from './useResumePrivacy'
 
 /** 验证通过后遮罩淡出时长（ms） */
 const UNLOCK_FADE_MS = 400
@@ -21,12 +19,12 @@ type ResumePrivacyGateProps = {
  */
 export function ResumePrivacyGate({ children }: ResumePrivacyGateProps) {
   const { t } = useTranslation()
-  const [overlayVisible, setOverlayVisible] = useState(() => readUnlockSession() !== '1')
+  const unlocked = useResumePrivacy()
   const [fading, setFading] = useState(false)
   const [answerInput, setAnswerInput] = useState('')
   const [showError, setShowError] = useState(false)
 
-  const contentUnlocked = !overlayVisible
+  const contentUnlocked = unlocked
 
   /**
    * @param event - 表单提交
@@ -41,9 +39,8 @@ export function ResumePrivacyGate({ children }: ResumePrivacyGateProps) {
     if (answerInput.trim() === RESUME_UNLOCK_ANSWER) {
       setShowError(false)
       setFading(true)
-      writeUnlockSession('1')
       window.setTimeout(() => {
-        setOverlayVisible(false)
+        unlockResumePrivacy()
         setFading(false)
       }, UNLOCK_FADE_MS)
       return
@@ -57,21 +54,23 @@ export function ResumePrivacyGate({ children }: ResumePrivacyGateProps) {
       <div
         className={contentUnlocked ? 'resume-privacy-content is-unlocked' : 'resume-privacy-content'}
         aria-hidden={!contentUnlocked}
+        inert={!contentUnlocked}
       >
         {children}
       </div>
 
-      {overlayVisible ? (
+      {!contentUnlocked ? (
         <div
           className={fading ? 'resume-privacy-overlay is-fading' : 'resume-privacy-overlay'}
           role="region"
           aria-label={t('resume.unlockFormAria')}
         >
           <form className="resume-privacy-form" onSubmit={handleSubmit} noValidate>
+            <p className="resume-privacy-note">{t('resume.privacyNote')}</p>
             <p className="resume-privacy-prompt">{t('resume.unlockPrompt')}</p>
 
             <label className="resume-privacy-field">
-              <span className="visually-hidden">{t('resume.unlockInputLabel')}</span>
+              <span className="resume-privacy-label">{t('resume.unlockInputLabel')}</span>
               <input
                 type="text"
                 name="resume-unlock-answer"
@@ -99,28 +98,4 @@ export function ResumePrivacyGate({ children }: ResumePrivacyGateProps) {
       ) : null}
     </div>
   )
-}
-
-/**
- * 读取 session 解锁标记；不可用时视为未解锁。
- */
-function readUnlockSession(): string | null {
-  try {
-    return sessionStorage.getItem(RESUME_UNLOCK_SESSION_KEY)
-  } catch {
-    return null
-  }
-}
-
-/**
- * 写入 session 解锁标记。
- *
- * @param value - 存储值
- */
-function writeUnlockSession(value: string): void {
-  try {
-    sessionStorage.setItem(RESUME_UNLOCK_SESSION_KEY, value)
-  } catch {
-    /* 隐私模式等环境下忽略 */
-  }
 }
