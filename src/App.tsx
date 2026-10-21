@@ -28,10 +28,10 @@ function App() {
       <DocumentLanguageBinding />
       <Routes>
         <Route path="/" element={<Navigate to="/resume" replace />} />
-        <Route path="/resume" element={<AesthetePage />} />
-        <Route path="/about" element={<AesthetePage />} />
+        <Route path="/resume" element={<AesthetePage view="resume" />} />
+        <Route path="/about" element={<AesthetePage view="about" />} />
         <Route path="/paintings/full" element={<PaintingsFullPlaceholder />} />
-        <Route path="/paintings" element={<AesthetePage />} />
+        <Route path="/paintings" element={<AesthetePage view="paintings" />} />
         <Route path="*" element={<Navigate to="/resume" replace />} />
       </Routes>
     </BrowserRouter>

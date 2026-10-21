@@ -13,13 +13,14 @@ import '../styles/aesthete.css'
 /**
  * Personal portfolio shell: shared chrome + tabbed sections (resume / about / paintings).
  */
-export function AesthetePage() {
+export function AesthetePage({ view }: { view: 'resume' | 'about' | 'paintings' }) {
   const location = useLocation()
   const { pathname } = location
   const { i18n } = useTranslation()
   const uiLang = i18n.language.startsWith('zh') ? 'zh' : 'en'
-  const isAboutView = pathname === '/about'
-  const showHero = pathname === '/resume'
+  // Use the matched route's view, including trailing slashes and case variations.
+  const isAboutView = view === 'about'
+  const showHero = view === 'resume'
 
   /**
    * After route change: reset scroll position (no anchor jumps).
@@ -36,7 +37,7 @@ export function AesthetePage() {
         <AestheteFeedTabs />
 
         <div className="page-below-tabs">
-          {pathname === '/resume' ? (
+          {view === 'resume' ? (
             <section id="resume" className="resume-section">
               <ResumeSection />
             </section>
@@ -44,7 +45,7 @@ export function AesthetePage() {
 
           {isAboutView ? <AboutSection /> : null}
 
-          {pathname === '/paintings' ? <PaintingsGallery /> : null}
+          {view === 'paintings' ? <PaintingsGallery /> : null}
 
           <SiteFooter />
         </div>

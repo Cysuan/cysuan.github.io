@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 type TabSpec = {
   id: 'resume' | 'about' | 'paintings'
@@ -20,19 +20,11 @@ const TAB_KEYS: Record<TabSpec['id'], 'tabs.resume' | 'tabs.about' | 'tabs.paint
   paintings: 'tabs.paintings',
 }
 
-/** @param pathname - Active location pathname */
-function isTabActive(tabId: TabSpec['id'], pathname: string): boolean {
-  if (tabId === 'resume') return pathname === '/resume'
-  if (tabId === 'about') return pathname === '/about'
-  return pathname === '/paintings' || pathname.startsWith('/paintings/')
-}
-
 /**
  * Primary navigation underline tabs (paths Latin; hashes pair with scroll targets).
  */
 export function AestheteFeedTabs() {
   const { t } = useTranslation()
-  const { pathname } = useLocation()
 
   return (
     <div className="tabs-container">
@@ -51,9 +43,7 @@ export function AestheteFeedTabs() {
           <NavLink
             key={tab.id}
             to={tab.to}
-            className={({ isActive }) =>
-              `tab${isTabActive(tab.id, pathname) || isActive ? ' active' : ''}`
-            }
+            className={({ isActive }) => `tab${isActive ? ' active' : ''}`}
           >
             {t(TAB_KEYS[tab.id])}
           </NavLink>
