@@ -27,9 +27,10 @@
     "longBio": "我平时很喜欢打扫房间、画油画、做菜，周末会出门散步、骑车吹风，或者打一场大汗淋漓的羽毛球。喜欢搞笑，喜欢所有好玩好笑的创意。",
     "photoAlt": "照片",
     "lifeMapping": {
-      "exploreHint": "anyway, tap a dot below.",
+      "exploreHint": "tap a dot below.",
       "startExploring": "从一个点开始",
       "openStory": "阅读故事",
+      "paintingsLink": "看看我的画",
       "previousStory": "上一个",
       "nextStory": "下一个",
       "sectionAria": "可交互的人生时间线图示",
@@ -51,7 +52,7 @@
     },
     "dotsPhilosophy": {
       "title": "关于「把点连起来」",
-      "connectingDotsPhrase": "Connecting the dots",
+      "connectingDotsPhrase": "Connecting the Dots",
       "connectingDotsAttribution": "—— 史蒂夫·乔布斯",
       "connectingDotsHoverSegments": [
         "很多经历在当下看起来是分散没用的，",
@@ -59,10 +60,10 @@
         "才会发现它们其实连在一起、指向一个结果。"
       ],
       "paragraphs": [
-        "我有点喜欢乔布斯 {{connectingDots}} 的说法。所以，自我介绍想从我经历过的那些 Dots 出发：一些喜欢的事、相信的东西，做成的和没做成的，有的没的念头。",
-        "总觉得，一个人的样子，多少会藏在这些事情里。我想借由这些点重新认识自己。同时很好奇，有一天回望时，这些 Dots 会连成什么样的形态？",
-        "我相信生命中绝大部分的 Dots 都没有附带说明书。它们先是被我喜欢、被我相信、被我经历着，那些暂时派不上用场的热爱和冲动，也许会在未来的某天找到位置。我正在学着平视每一个 Dot，看到所有经历中更积极的一面，尝试去理解经历之间的关联。",
-        "当然，本页的初心还是为求职准备，闪光的部分难免多分到一点版面……"
+        "我喜欢乔布斯 {{connectingDots}} 的说法。所以，自我介绍想从自己经历过的那些 Dots 出发：一些喜欢的事、相信的东西，还有各种有的没的念头。",
+        "比起简历，总觉得一个人更真实的样子藏在那些零散的经历里。有些喜欢从小延续至今，有些看似不相干的经历，回头看时才发现彼此有关。",
+        "我想，生命中大部分的 Dots 都没有附带说明书。那些暂时派不上用场的热爱和冲动，也许会在未来某天找到自己的位置。至于现在，我会继续做喜欢的事，看看会发生什么。也很好奇未来某一天这些 Dots 又会怎样连在一起。",
+        "不过，本页最初是为求职准备，所以挑了些闪光的……"
       ]
     }
   },
@@ -107,7 +108,7 @@
     "fullBack": "返回绘画概览"
   },
   "resume": {
-    "privacyNote": "暂不可见，答对即解锁。",
+    "privacyNote": "暂不可见",
     "sectionAria": "履历归档页面布局",
     "unavailableMessage": "该页面暂不支持查看 ：）",
     "unavailableAria": "履历正文暂不可查看",

@@ -27,9 +27,10 @@
     "longBio": "In my spare time, I love tidying up my room, oil painting, and cooking. On weekends, you’ll usually find me going for walks, cycling to catch the breeze, or working up a good sweat playing badminton. I enjoy humor and am always drawn to fun, witty, and creative ideas.",
     "photoAlt": "Portrait of Siyuan Cai in a garden walkway",
     "lifeMapping": {
-      "exploreHint": "anyway, tap a dot below.",
+      "exploreHint": "Anyway, tap a dot below.",
       "startExploring": "Start with a dot",
       "openStory": "Read story",
+      "paintingsLink": "See my paintings",
       "previousStory": "Previous",
       "nextStory": "Next",
       "sectionAria": "Interactive life timeline visualization",
@@ -52,10 +53,10 @@
     "dotsPhilosophy": {
       "title": "On connecting the dots",
       "paragraphs": [
-        "I have a soft spot for Steve Jobs’ idea of {{connectingDots}}. So I’d like to introduce myself through the Dots I’ve collected along the way: things I’ve enjoyed, things I’ve believed in, things that worked out and things that didn’t, and all the little thoughts in between.",
-        "I tend to think a person’s character shows up in these things. I’m using these dots to get to know myself again. And I’m curious what shape they’ll make when I look back one day.",
-        "I believe most Dots in life arrive without instructions. At first, they’re simply things I like, believe in, and live through. Interests and impulses that seem to serve no purpose now may find their place someday. I’m learning to give each Dot equal consideration, to see the good in every experience, and to understand how they connect.",
-        "Of course, this page started as part of a job search, so the brighter moments inevitably get a little more space…"
+        "I've always liked Steve Jobs' idea of {{connectingDots}}. So I thought I'd introduce myself through some of my own dots: things I love, things I believe in, and all sorts of random thoughts along the way.",
+        "I've always felt that there's more to a person than what's on their résumé. The little bits and pieces of life often say more about who we really are. Some things I've loved since childhood, while other seemingly unrelated experiences only started to make sense when I looked back.",
+        "I guess most of life's dots don't come with instructions. The things we're passionate about, even when they don't seem particularly useful, might find their place someday. For now, I'll just keep doing what I love and see where it takes me. I'm curious to see how these dots might connect when I look back one day.",
+        "That said, this page was originally made for job hunting, so I've picked out some of the shinier bits..."
       ],
       "connectingDotsPhrase": "connecting the dots",
       "connectingDotsHoverSegments": [
@@ -105,7 +106,7 @@
     "fullBack": "Back to overview"
   },
   "resume": {
-    "privacyNote": "Private for now. Answer correctly to unlock.",
+    "privacyNote": "Private for now",
     "sectionAria": "Resume archive layout",
     "unavailableMessage": "This page isn't available for viewing yet :)",
     "unavailableAria": "Resume content is temporarily unavailable",

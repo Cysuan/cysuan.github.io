@@ -27,7 +27,7 @@ export function ConnectingDotsHover({
         className="about-connecting-dots-trigger"
         aria-describedby={tipId}
       >
-        {phrase}
+        <em>{phrase}</em>
       </button>
       <blockquote
         id={tipId}

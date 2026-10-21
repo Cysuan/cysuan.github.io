@@ -70,7 +70,7 @@ export function ResumePrivacyGate({ children }: ResumePrivacyGateProps) {
             <p className="resume-privacy-prompt">{t('resume.unlockPrompt')}</p>
 
             <label className="resume-privacy-field">
-              <span className="resume-privacy-label">{t('resume.unlockInputLabel')}</span>
+              <span className="visually-hidden">{t('resume.unlockInputLabel')}</span>
               <input
                 type="text"
                 name="resume-unlock-answer"

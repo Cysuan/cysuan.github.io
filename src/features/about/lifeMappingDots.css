@@ -245,9 +245,9 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.64);
-  backdrop-filter: blur(2px) saturate(110%);
-  -webkit-backdrop-filter: blur(2px) saturate(110%);
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(6px) saturate(100%);
+  -webkit-backdrop-filter: blur(6px) saturate(100%);
   color: #1d1d1f;
   box-shadow: 0 24px 96px rgba(0, 0, 0, 0.12);
   overflow: hidden;
@@ -353,6 +353,23 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
 .life-mapping-detail-body p { margin: 0 0 1.25rem; }
 .life-mapping-detail-body p:last-child { margin-bottom: 0; }
 .life-mapping-detail-body strong { font-weight: 500; color: #1d1d1f; }
+.life-mapping-paintings-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 10px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  background: rgba(118, 118, 128, 0.04);
+  color: #424247;
+  font: 400 0.8125rem/1.5 var(--font-sans);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.life-mapping-paintings-link:hover { background: rgba(118, 118, 128, 0.09); color: #1d1d1f; }
+.life-mapping-paintings-link:focus-visible { outline: 2px solid #5170ff; outline-offset: 3px; }
 .life-mapping-detail-connections {
   display: flex;
   flex-wrap: wrap;

@@ -25,7 +25,7 @@ const EN: readonly LifeMappingNodeCopy[] = [
     label: 'Doodling and Having Fun',
     date: '2020',
     tag: 'Hobby',
-    desc: 'I first picked up a paintbrush on a whim, expecting it to be just another passing phase. Unexpectedly, painting turned into something I’ve come to enjoy on a deeply instinctive, almost bodily level.\n\nI started by drawing people around me—family and friends—carrying over my loose, slightly irreverent way of sketching. Surprisingly, those “improvised” portraits were received with more affection than I had expected from them.\n\nOre drawn to the physical sensation of paint moving across the canvas under the brush—the richness, the weight, the fullness of color. There are moments when I lose track of time completely while painting, slipping into a kind of flow state. I find myself hoping to keep it that way: without the pressure to improve, and without assigning any fixed purpose—just free, unburdened doodling.',
+    desc: 'I draw the family and friends around me, keeping things loose and a little irreverent. To my surprise, those portraits have received more affection than I expected. What started as a passing whim with a paintbrush has since become something I love on an instinctive, almost physical level.',
   },
   {
     id: 'n3',
@@ -39,7 +39,7 @@ const EN: readonly LifeMappingNodeCopy[] = [
     label: 'Urban Planning',
     date: '2016',
     tag: 'Major',
-    desc: 'Seven years of studying urban planning marked the starting point of how I began to understand society.\n\nIntroductory aesthetics courses planted the seed of my interest in visual expression, nudging me toward more intentional and design-driven forms of communication. Through fieldwork and internships, I moved deeper into real-world contexts and even stepped into professional environments, where, in several project highlight moments, I experienced the simple joy of having my capabilities recognized.\n\nUrban planning gave me a kind of dual skill set. On one hand, I learned to dissect complex situations through **rational research and data gathering**; on the other, I developed **a sensitivity to aesthetics** that allows me to construct and communicate visions of the future. What attracts me most is the latter—the storytelling aspect: weaving together data, geography, and human needs into a spatial narrative with a beginning, tension, and resolution.',
+    desc: 'Seven years of studying urban planning marked the starting point of how I began to understand society.\n\nIntroductory aesthetics courses planted the seed of my interest in visual expression, nudging me toward more intentional and design-driven forms of communication. Through fieldwork and internships, I moved deeper into real-world contexts and even stepped into professional environments, where, in several project highlight moments, I experienced the simple joy of having my capabilities recognized.\n\nUrban planning gave me a kind of dual skill set. On one hand, I learned to dissect complex situations through **rational research and data gathering**; on the other, I developed **a sensitivity to aesthetics** that allows me to construct and communicate visions of the future. What attracts me most is the storytelling aspect.',
   },
   {
     id: 'n5',
@@ -133,7 +133,7 @@ const ZH: readonly LifeMappingNodeCopy[] = [
     label: '有趣万岁，乱画万岁',
     date: '2020',
     tag: '爱好',
-    desc: '带着三分钟热度拿起画笔，没想到画画演变成生理性喜欢的爱好。\n\n我画身边的家人朋友，延续乱画的态度和一点点“冒犯”，竟然收获ta们意料之外的喜爱。之后更迷上了画笔裹着颜料在画布游走的触感，喜欢浓郁饱满的颜色。常有画到忘记时间的心流时刻，期待继续不背负进步，不预设目的的涂鸦。',
+    desc: '我画身边的家人朋友，延续乱画的态度和一点点“冒犯”，竟然收获意料之外的喜爱。没想到最初带着三分钟热度拿起的画笔，再后来演变成生理性喜欢的爱好。',
   },
   {
     id: 'n3',
@@ -147,7 +147,7 @@ const ZH: readonly LifeMappingNodeCopy[] = [
     label: '城市规划',
     date: '2016',
     tag: '专业',
-    desc: '七年的城市规划学习，是我认识社会的起点。\n\n基础美学课帮我种下了对视觉表达的兴趣，推着我去尝试更具**审美力**的表达；参加实践后深入田野、走进职场，也在几次项目的高光时刻里，体验到能力被看见的快乐。\n\n城市规划赋予我一种双重能力，用**理性的调研与资料收集**去抽丝剥茧，也用**敏锐的审美力**去讲述某种未来的图景。后者这种storytelling是最吸引我的部分：把数据、地形、人的需求，串成一个有起点、有冲突、有落点的空间叙事。',
+    desc: '七年的城市规划学习，是我认识社会的起点。\n\n基础美学课帮我种下了对视觉表达的兴趣，推着我去尝试更具**审美力**的表达；参加实践后深入田野、走进职场，也在几次项目的高光时刻里，体验到能力被看见的快乐。\n\n城市规划赋予我一种双重能力，用**理性的调研与资料收集**去抽丝剥茧，也用**敏锐的审美力**去讲述某种未来的图景。后者这种storytelling是最吸引我的部分。',
   },
   {
     id: 'n5',

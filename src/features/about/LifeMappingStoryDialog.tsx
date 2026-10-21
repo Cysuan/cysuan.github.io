@@ -126,6 +126,19 @@ export function LifeMappingStoryDialog({ story, onClose, onNavigate }: Props) {
               </div>
               <h2 id="life-mapping-story-title" className="life-mapping-detail-title">{story.label}</h2>
               <div className="life-mapping-detail-body"><StoryCopy text={story.desc} /></div>
+              {story.id === 'n2' ? (
+                <a
+                  className="life-mapping-paintings-link"
+                  href="https://www.xuanpaints.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('about.lifeMapping.paintingsLink')}
+                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 17 17 7M7 7h10v10" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                </a>
+              ) : null}
               {story.id === 'n7' ? <TutoringBusinessCard key={story.id} /> : null}
               {story.ledTo.length > 0 ? (
                 <nav className="life-mapping-detail-connections" aria-label={t('about.lifeMapping.ledTo')}>

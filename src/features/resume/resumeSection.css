@@ -909,30 +909,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0;
   width: min(100%, 16.5rem);
   margin: 0;
   padding: 0;
 }
 
 .aesthete-root .resume-privacy-prompt {
-  margin: 0;
+  margin: 0 0 1.75rem;
   font-family: var(--r-font);
-  font-size: var(--r-text-sm);
+  font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: 0.02em;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
   color: var(--r-fg);
   text-align: center;
 }
 
 .aesthete-root .resume-privacy-note {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   font-family: var(--r-font);
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   font-weight: 400;
-  line-height: 1.7;
-  color: var(--r-grey);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: #8e8e93;
   text-align: center;
   text-wrap: balance;
 }
@@ -941,41 +942,34 @@
   width: 100%;
 }
 
-.aesthete-root .resume-privacy-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--r-grey);
-  text-align: center;
-}
-
 .aesthete-root .resume-privacy-input {
   display: block;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.55rem 0.75rem;
-  border: 1px solid var(--r-rule);
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.72);
+  min-height: 44px;
+  padding: 0.65rem 0.25rem;
+  border: 0;
+  border-bottom: 1px solid #d5d7da;
+  border-radius: 0;
+  background: transparent;
   font-family: var(--r-font);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.45;
   color: var(--r-fg);
   text-align: center;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .aesthete-root .resume-privacy-input::placeholder {
-  color: var(--r-grey);
-  opacity: 0.72;
+  color: #9b9ba1;
+  opacity: 1;
 }
 
 .aesthete-root .resume-privacy-input:focus {
   outline: none;
-  border-color: rgba(0, 0, 0, 0.28);
-  background: rgba(255, 255, 255, 0.92);
+  border-color: #8e8e93;
+  box-shadow: 0 1px 0 #8e8e93;
 }
 
 .aesthete-root .resume-privacy-input:disabled {
@@ -983,7 +977,7 @@
 }
 
 .aesthete-root .resume-privacy-error {
-  margin: -0.2rem 0 0;
+  margin: 0.75rem 0 0;
   width: 100%;
   font-family: var(--r-font);
   font-size: 0.8125rem;
@@ -993,15 +987,16 @@
 }
 
 .aesthete-root .resume-privacy-submit {
-  margin: 0.15rem 0 0;
-  padding: 0.45rem 1.1rem;
-  border: 1px solid var(--r-rule);
+  min-height: 44px;
+  margin: 1.5rem 0 0;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.09);
   border-radius: 999px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.45);
   font-family: var(--r-font);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1.45;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--r-fg);
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
