@@ -7,7 +7,7 @@ import { AestheteHeader } from '../features/aesthete/AestheteHeader'
 import { AestheteHero } from '../features/aesthete/AestheteHero'
 import { SiteFooter } from '../features/aesthete/SiteFooter'
 import { PaintingsGallery } from '../features/paintings/PaintingsGallery'
-import { ResumeSection } from '../features/resume/ResumeSection'
+import { ResumeUnavailable } from '../features/resume/ResumeUnavailable'
 import '../styles/aesthete.css'
 
 /**
@@ -39,7 +39,7 @@ export function AesthetePage({ view }: { view: 'resume' | 'about' | 'paintings' 
         <div className="page-below-tabs">
           {view === 'resume' ? (
             <section id="resume" className="resume-section">
-              <ResumeSection />
+              <ResumeUnavailable />
             </section>
           ) : null}
 

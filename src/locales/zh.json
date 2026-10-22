@@ -112,12 +112,6 @@
     "sectionAria": "履历归档页面布局",
     "unavailableMessage": "该页面暂不支持查看 ：）",
     "unavailableAria": "履历正文暂不可查看",
-    "unlockPrompt": "where is the pizza？",
-    "unlockInputLabel": "回答",
-    "unlockPlaceholder": "输入回答",
-    "unlockButton": "查看 Resume",
-    "unlockError": "再想想 :)",
-    "unlockFormAria": "回答问题以查看履历",
     "brand": { "line1": "蔡", "line2": "思源" },
     "meta": {
       "aria": "联系与偏好信息",

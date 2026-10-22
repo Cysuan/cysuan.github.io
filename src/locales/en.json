@@ -110,12 +110,6 @@
     "sectionAria": "Resume archive layout",
     "unavailableMessage": "This page isn't available for viewing yet :)",
     "unavailableAria": "Resume content is temporarily unavailable",
-    "unlockPrompt": "where is the pizza？",
-    "unlockInputLabel": "Answer",
-    "unlockPlaceholder": "Your answer",
-    "unlockButton": "View Resume",
-    "unlockError": "Not quite :)",
-    "unlockFormAria": "Answer the question to view resume",
     "brand": {
       "line1": "Siyuan",
       "line2": "Cai"

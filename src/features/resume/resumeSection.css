@@ -855,189 +855,45 @@
   }
 }
 
-/**
- * 履历正文隐私遮罩：锁定时完全隐藏正文，叠加浓磨砂蒙版；站点导航不受影响。
- */
-.aesthete-root .resume-privacy-shell {
+/** Public résumé placeholder: a single notice, with no unlock interaction. */
+.aesthete-root .resume-unavailable-shell {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-.aesthete-root .resume-privacy-content {
-  visibility: hidden;
+.aesthete-root .resume-unavailable-layout {
+  opacity: 0.22;
+  filter: blur(9px) saturate(0);
   user-select: none;
   pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 94%, transparent);
 }
 
-.aesthete-root .resume-privacy-content.is-unlocked {
-  visibility: visible;
-  user-select: auto;
-  pointer-events: auto;
-}
-
-.aesthete-root .resume-privacy-overlay {
+.aesthete-root .resume-unavailable {
   position: absolute;
   inset: 0;
-  z-index: 80;
+  z-index: 1;
+  box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: clamp(3rem, 12svh, 7rem) 1.25rem 2rem;
   border-top: 1px solid var(--r-rule);
-  background: linear-gradient(
-    135deg,
-    rgba(246, 247, 248, 0.98),
-    rgba(255, 255, 255, 0.96) 55%,
-    rgba(246, 247, 248, 0.98)
-  );
-  backdrop-filter: blur(28px) saturate(60%);
-  -webkit-backdrop-filter: blur(28px) saturate(60%);
-  pointer-events: auto;
-  transition:
-    opacity 0.4s ease,
-    backdrop-filter 0.4s ease,
-    -webkit-backdrop-filter 0.4s ease;
+  background:
+    radial-gradient(ellipse 34% 15rem at 50% 0, rgba(255, 255, 255, 0.95), transparent),
+    linear-gradient(125deg, rgba(246, 247, 249, 0.68), rgba(255, 255, 255, 0.36) 48%, rgba(247, 248, 250, 0.65));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.aesthete-root .resume-privacy-overlay.is-fading {
-  opacity: 0;
-  pointer-events: none;
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
-}
-
-.aesthete-root .resume-privacy-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  width: min(100%, 16.5rem);
+.aesthete-root .resume-unavailable-note {
   margin: 0;
-  padding: 0;
-}
-
-.aesthete-root .resume-privacy-prompt {
-  margin: 0 0 1.75rem;
   font-family: var(--r-font);
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.025em;
-  color: var(--r-fg);
-  text-align: center;
-}
-
-.aesthete-root .resume-privacy-note {
-  margin: 0 0 1rem;
-  font-family: var(--r-font);
-  font-size: 0.6875rem;
-  font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.7;
   letter-spacing: 0.12em;
   color: #8e8e93;
   text-align: center;
-  text-wrap: balance;
-}
-
-.aesthete-root .resume-privacy-field {
-  width: 100%;
-}
-
-.aesthete-root .resume-privacy-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  min-height: 44px;
-  padding: 0.65rem 0.25rem;
-  border: 0;
-  border-bottom: 1px solid #d5d7da;
-  border-radius: 0;
-  background: transparent;
-  font-family: var(--r-font);
-  font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--r-fg);
-  text-align: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.aesthete-root .resume-privacy-input::placeholder {
-  color: #9b9ba1;
-  opacity: 1;
-}
-
-.aesthete-root .resume-privacy-input:focus {
-  outline: none;
-  border-color: #8e8e93;
-  box-shadow: 0 1px 0 #8e8e93;
-}
-
-.aesthete-root .resume-privacy-input:disabled {
-  opacity: 0.6;
-}
-
-.aesthete-root .resume-privacy-error {
-  margin: 0.75rem 0 0;
-  width: 100%;
-  font-family: var(--r-font);
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--r-grey);
-  text-align: center;
-}
-
-.aesthete-root .resume-privacy-submit {
-  min-height: 44px;
-  margin: 1.5rem 0 0;
-  padding: 0.6rem 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.09);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  font-family: var(--r-font);
-  font-size: 0.75rem;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
-  color: var(--r-fg);
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-}
-
-.aesthete-root .resume-privacy-submit:hover:not(:disabled) {
-  border-color: rgba(0, 0, 0, 0.28);
-}
-
-.aesthete-root .resume-privacy-submit:focus-visible {
-  outline: none;
-  border-color: rgba(0, 0, 0, 0.28);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.aesthete-root .resume-privacy-submit:disabled {
-  opacity: 0.55;
-  cursor: default;
-}
-
-.aesthete-root .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .aesthete-root .resume-privacy-overlay {
-    transition: none;
-  }
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .aesthete-root .resume-privacy-overlay {
-    background: var(--r-bg);
-  }
 }

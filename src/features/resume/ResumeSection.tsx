@@ -6,7 +6,6 @@ import { ResumeBehindSortSwitch } from './ResumeBehindSortSwitch'
 import { DualLayerStack } from './ResumeBehindCv'
 import { ResumeDogEarDock } from './ResumeDogEarDock'
 import { ResumeEntryReorderGroup } from './ResumeEntryReorderGroup'
-import { ResumePrivacyGate } from './ResumePrivacyGate'
 import './resumeSection.css'
 import {
   RESUME_EDUCATION_DEFAULT_ORDER,
@@ -49,7 +48,7 @@ function getExperienceTags(id: string, t: TFunction): readonly string[] {
 }
 
 /**
- * 履历页：全局「简历背后」状态；左侧时间/地点固定，仅右侧列 A/B 切换。
+ * Original résumé layout, used as a hidden height reference by ResumeUnavailable.
  */
 export function ResumeSection() {
   const { t } = useTranslation()
@@ -311,7 +310,6 @@ export function ResumeSection() {
 
   return (
     <div className="resume-viewport" aria-label={t('resume.sectionAria')}>
-      <ResumePrivacyGate>
         <div className="resume-stack">
           <main className="resume-main">
               <section
@@ -359,7 +357,6 @@ export function ResumeSection() {
               </section>
             </main>
           </div>
-      </ResumePrivacyGate>
     </div>
   )
 }
