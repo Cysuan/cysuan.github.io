@@ -1,60 +1,122 @@
-import { useId } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 export type ConnectingDotsHoverProps = {
-  /** 可交互短语，如 “Connecting the dots” */
   phrase: string
-  /** hover 时分段浮现的说明句（每段一行，对应逗号分句） */
   segments: string[]
-  /** 引用出处署名，如 “史蒂夫·乔布斯” */
   attribution: string
 }
 
-/**
- * 「Connecting the dots」短语：下划线 + hover 时在右侧以引用样式逐行浮现说明。
- */
-export function ConnectingDotsHover({
-  phrase,
-  segments,
-  attribution,
-}: ConnectingDotsHoverProps) {
-  const tipId = useId()
-  const fullQuote = segments.join('')
+/** A small, non-modal annotation: hover on desktop, tap to pin on touch screens. */
+export function ConnectingDotsHover({ phrase, segments, attribution }: ConnectingDotsHoverProps) {
+  const noteId = useId()
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const noteRef = useRef<HTMLElement>(null)
+  const pinnedRef = useRef(false)
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const [open, setOpen] = useState(false)
+
+  function cancelLeave() {
+    clearTimeout(leaveTimerRef.current)
+  }
+
+  function leave() {
+    cancelLeave()
+    if (!pinnedRef.current) leaveTimerRef.current = setTimeout(() => setOpen(false), 160)
+  }
+
+  useLayoutEffect(() => {
+    if (!open) return
+    const note = noteRef.current
+    const trigger = triggerRef.current
+    if (!note || !trigger) return
+
+    const position = () => {
+      const anchor = trigger.getBoundingClientRect()
+      const box = note.getBoundingClientRect()
+      const inset = 16
+      const left = Math.max(inset, Math.min(anchor.left, window.innerWidth - box.width - inset))
+      const below = anchor.bottom + 10
+      const above = anchor.top - box.height - 10
+      const top = below + box.height <= window.innerHeight - inset
+        ? below
+        : Math.max(inset, Math.min(above, window.innerHeight - box.height - inset))
+      note.style.left = `${left}px`
+      note.style.top = `${top}px`
+      note.style.visibility = 'visible'
+    }
+    position()
+    window.addEventListener('resize', position)
+    window.addEventListener('scroll', position, true)
+    const observer = new ResizeObserver(position)
+    observer.observe(note)
+    return () => {
+      window.removeEventListener('resize', position)
+      window.removeEventListener('scroll', position, true)
+      observer.disconnect()
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (!open) return
+    const closeOutside = (event: Event) => {
+      if (event.target instanceof Node && !triggerRef.current?.contains(event.target) && !noteRef.current?.contains(event.target)) {
+        pinnedRef.current = false
+        setOpen(false)
+      }
+    }
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        pinnedRef.current = false
+        setOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', closeOutside)
+    document.addEventListener('focusin', closeOutside)
+    document.addEventListener('keydown', escape)
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside)
+      document.removeEventListener('focusin', closeOutside)
+      document.removeEventListener('keydown', escape)
+    }
+  }, [open])
+
+  useEffect(() => () => clearTimeout(leaveTimerRef.current), [])
 
   return (
     <span className="about-connecting-dots">
       <button
+        ref={triggerRef}
         type="button"
         className="about-connecting-dots-trigger"
-        aria-describedby={tipId}
-      >
-        <em>{phrase}</em>
-      </button>
-      <blockquote
-        id={tipId}
-        role="tooltip"
-        className="about-connecting-dots-reveal"
-        cite="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
-      >
-        <span className="about-connecting-dots-reveal-inner" aria-hidden>
-          <span className="about-connecting-dots-quote-body">
-            {segments.map((segment, index) => (
-              <span
-                key={`${segment}-${index}`}
-                className="about-connecting-dots-segment"
-                style={{ '--seg-i': index } as React.CSSProperties}
-              >
-                {segment}
-              </span>
-            ))}
-          </span>
-          <footer className="about-connecting-dots-attribution">
-            <cite>{attribution}</cite>
-          </footer>
-        </span>
-        <span className="about-connecting-dots-sr">
-          {fullQuote} {attribution}
-        </span>
-      </blockquote>
+        aria-expanded={open}
+        aria-controls={open ? noteId : undefined}
+        aria-describedby={open ? noteId : undefined}
+        onPointerEnter={(event) => {
+          cancelLeave()
+          if (event.pointerType === 'mouse') setOpen(true)
+        }}
+        onPointerLeave={leave}
+        onClick={() => {
+          cancelLeave()
+          pinnedRef.current = !pinnedRef.current
+          setOpen(pinnedRef.current)
+        }}
+      ><em>{phrase}</em></button>
+      {open ? createPortal(
+        <aside
+          ref={noteRef}
+          id={noteId}
+          role="note"
+          className="connecting-dots-note"
+          onPointerEnter={cancelLeave}
+          onPointerLeave={leave}
+        >
+          <span className="connecting-dots-note-copy">{segments.join('')}</span>
+          <cite>{attribution}</cite>
+        </aside>,
+        document.body,
+      ) : null}
     </span>
   )
 }

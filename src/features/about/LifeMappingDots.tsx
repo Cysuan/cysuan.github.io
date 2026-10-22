@@ -38,12 +38,12 @@ const SVG_NS = 'http://www.w3.org/2000/svg'
  * @param source - Line start
  * @param target - Line end
  */
-function getPathString(source: RuntimeLMNode, target: RuntimeLMNode): string {
+function getPathString(source: RuntimeLMNode, target: RuntimeLMNode, scale: number): string {
   const dx = target.currentX - source.currentX
   const dy = target.currentY - source.currentY
   const midX = (source.currentX + target.currentX) / 2
   const midY = (source.currentY + target.currentY) / 2
-  const offset = 40
+  const offset = 40 * scale
   const angle = Math.atan2(dy, dx)
   const cpX = midX + Math.cos(angle + Math.PI / 2) * offset
   const cpY = midY + Math.sin(angle + Math.PI / 2) * offset
@@ -107,6 +107,7 @@ export function LifeMappingDots() {
   const { t, i18n } = useTranslation()
   const wrapRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
 
@@ -129,7 +130,7 @@ export function LifeMappingDots() {
 
   /** Rebuild topology when container size or copy language changes. */
   useEffect(() => {
-    const el = wrapRef.current
+    const el = stageRef.current
     if (!el) return
 
     const measure = () => {
@@ -176,9 +177,11 @@ export function LifeMappingDots() {
 
     const copyRows = getLifeMappingNodeCopyRows(i18n.language)
     const copyById = new Map(copyRows.map((r) => [r.id, r] as const))
+    const graphScale = Math.min(1, dimensions.w / 600)
 
     const merged = LIFE_MAPPING_TOPOLOGY.map((topo) => ({
       ...topo,
+      r: Math.max(2.5, topo.r * graphScale),
       label: copyById.get(topo.id)?.label ?? '',
       date: copyById.get(topo.id)?.date ?? '',
       tag: copyById.get(topo.id)?.tag,
@@ -354,7 +357,7 @@ export function LifeMappingDots() {
       timeRef.current += reduceMotion ? 0 : 0.01
 
       runtimeNodes.forEach((node) => {
-        const floatAmp = reduceMotion ? 0 : 2 + node.r * 0.2
+        const floatAmp = reduceMotion ? 0 : (2 + node.r * 0.2) * graphScale
         const t0 = timeRef.current
         node.currentX = node.baseX + Math.sin(t0 + node.offset) * floatAmp
         node.currentY = node.baseY + Math.cos(t0 * 0.8 + node.offset) * floatAmp
@@ -362,7 +365,7 @@ export function LifeMappingDots() {
       })
 
       runtimeLinks.forEach((link) => {
-        link.element.setAttribute('d', getPathString(link.source, link.target))
+        link.element.setAttribute('d', getPathString(link.source, link.target, graphScale))
       })
 
       rafMainRef.current = requestAnimationFrame(tick)
@@ -433,14 +436,16 @@ export function LifeMappingDots() {
           {t('about.lifeMapping.ambientLine2')}
         </p>
 
-        <svg
-          ref={svgRef}
-          className="life-mapping-network-canvas"
-          width="100%"
-          height="100%"
-          role="group"
-          aria-label={t('about.lifeMapping.sectionAria')}
-        />
+        <div className="life-mapping-stage" ref={stageRef}>
+          <svg
+            ref={svgRef}
+            className="life-mapping-network-canvas"
+            width="100%"
+            height="100%"
+            role="group"
+            aria-label={t('about.lifeMapping.sectionAria')}
+          />
+        </div>
       </section>
 
       {panel ? (

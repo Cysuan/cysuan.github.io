@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { LIFE_MAPPING_TOPOLOGY } from './lifeMappingGraph'
@@ -27,18 +27,18 @@ type Props = {
 export function LifeMappingStoryDialog({ story, onClose, onNavigate }: Props) {
   const { t } = useTranslation()
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const surfaceRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const dragStartRef = useRef<number | null>(null)
   const backdropDownRef = useRef(false)
   const [closing, setClosing] = useState(false)
 
-  function requestClose() {
+  const requestClose = useCallback(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       onClose()
     } else {
       setClosing(true)
     }
-  }
+  }, [onClose])
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -55,6 +55,103 @@ export function LifeMappingStoryDialog({ story, onClose, onNavigate }: Props) {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' })
   }, [story.id])
+
+  // Pull down from the header or from content already scrolled to its top.
+  // Native touchmove is non-passive so a sheet drag can take over from scrolling.
+  useEffect(() => {
+    const surface = surfaceRef.current
+    const dialog = dialogRef.current
+    if (!surface || !dialog) return
+    let gesture: { x: number; y: number; started: number; distance: number; dragging: boolean } | null = null
+    let suppressClick = false
+
+    const begin = (x: number, y: number, target: EventTarget | null) => {
+      gesture = null
+      suppressClick = false
+      if (!window.matchMedia('(max-width: 600px)').matches || !(target instanceof Element)) return
+      if (target.closest('button, a, input, textarea, select, [role="button"]')) return
+      if (scrollRef.current?.contains(target) && scrollRef.current.scrollTop > 1) return
+      gesture = { x, y, started: performance.now(), distance: 0, dragging: false }
+    }
+    const move = (x: number, y: number) => {
+      if (!gesture) return false
+      const dx = Math.abs(x - gesture.x)
+      const dy = y - gesture.y
+      if (!gesture.dragging) {
+        if (dy < -6 || (dx > 12 && dx > Math.abs(dy))) { gesture = null; return false }
+        if (dy < 6 || dy < dx * 1.2) return false
+        gesture.dragging = true
+        dialog.classList.add('is-dragging')
+      }
+      gesture.distance = Math.max(0, dy)
+      dialog.style.setProperty('--sheet-drag', `${gesture.distance * 0.9}px`)
+      return true
+    }
+    const finish = (cancelled = false) => {
+      const drag = gesture
+      gesture = null
+      if (!drag?.dragging) return
+      suppressClick = true
+      dialog.classList.remove('is-dragging')
+      const dismiss = !cancelled && (drag.distance >= 44 || (drag.distance >= 24 && performance.now() - drag.started < 240))
+      if (dismiss) requestClose()
+      else dialog.style.removeProperty('--sheet-drag')
+    }
+    const touchStart = (event: TouchEvent) => {
+      if (event.touches.length !== 1) { finish(true); return }
+      begin(event.touches[0].clientX, event.touches[0].clientY, event.target)
+    }
+    const touchMove = (event: TouchEvent) => {
+      if (event.touches.length !== 1) { finish(true); return }
+      if (move(event.touches[0].clientX, event.touches[0].clientY) && event.cancelable) event.preventDefault()
+    }
+    const touchEnd = () => finish()
+    const cancel = () => finish(true)
+    // The same drag interaction also works with a mouse in a narrow preview.
+    const pointerDown = (event: PointerEvent) => {
+      if (event.pointerType === 'touch' || event.button !== 0) return
+      begin(event.clientX, event.clientY, event.target)
+    }
+    const pointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return
+      if (move(event.clientX, event.clientY)) {
+        surface.setPointerCapture(event.pointerId)
+        event.preventDefault()
+      }
+    }
+    const pointerUp = (event: PointerEvent) => {
+      if (event.pointerType !== 'touch') finish()
+    }
+    const pointerCancel = (event: PointerEvent) => {
+      if (event.pointerType !== 'touch') finish(true)
+    }
+    const click = (event: MouseEvent) => {
+      if (!suppressClick) return
+      suppressClick = false
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    surface.addEventListener('touchstart', touchStart, { passive: true })
+    surface.addEventListener('touchmove', touchMove, { passive: false })
+    surface.addEventListener('touchend', touchEnd)
+    surface.addEventListener('touchcancel', cancel)
+    surface.addEventListener('pointerdown', pointerDown)
+    surface.addEventListener('pointermove', pointerMove)
+    surface.addEventListener('pointerup', pointerUp)
+    surface.addEventListener('pointercancel', pointerCancel)
+    surface.addEventListener('click', click, true)
+    return () => {
+      surface.removeEventListener('touchstart', touchStart)
+      surface.removeEventListener('touchmove', touchMove)
+      surface.removeEventListener('touchend', touchEnd)
+      surface.removeEventListener('touchcancel', cancel)
+      surface.removeEventListener('pointerdown', pointerDown)
+      surface.removeEventListener('pointermove', pointerMove)
+      surface.removeEventListener('pointerup', pointerUp)
+      surface.removeEventListener('pointercancel', pointerCancel)
+      surface.removeEventListener('click', click, true)
+    }
+  }, [requestClose])
 
   const index = LIFE_MAPPING_TOPOLOGY.findIndex((node) => node.id === story.id)
   const previous = LIFE_MAPPING_TOPOLOGY[index - 1]
@@ -80,31 +177,11 @@ export function LifeMappingStoryDialog({ story, onClose, onNavigate }: Props) {
       }}
     >
       {story ? (
-        <div className="life-mapping-story-surface">
+        <div className="life-mapping-story-surface" ref={surfaceRef}>
           <header className="life-mapping-story-header">
             <div
               className="life-mapping-sheet-grip"
               aria-hidden="true"
-              onPointerDown={(event) => {
-                dragStartRef.current = event.clientY
-                event.currentTarget.setPointerCapture(event.pointerId)
-              }}
-              onPointerMove={(event) => {
-                if (dragStartRef.current === null) return
-                const distance = Math.max(0, event.clientY - dragStartRef.current)
-                dialogRef.current?.style.setProperty('--sheet-drag', `${distance}px`)
-              }}
-              onPointerUp={(event) => {
-                if (dragStartRef.current !== null && event.clientY - dragStartRef.current > 60) {
-                  requestClose()
-                }
-                dialogRef.current?.style.removeProperty('--sheet-drag')
-                dragStartRef.current = null
-              }}
-              onPointerCancel={() => {
-                dialogRef.current?.style.removeProperty('--sheet-drag')
-                dragStartRef.current = null
-              }}
             ><span /></div>
             <button
               type="button"

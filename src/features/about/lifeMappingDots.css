@@ -103,6 +103,12 @@
   margin: 0;
 }
 
+.about-life-mapping .life-mapping-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .about-life-mapping .life-mapping-network-canvas {
   position: absolute;
   inset: 0;
@@ -445,13 +451,25 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
 }
 @keyframes life-mapping-backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .about-life-mapping {
+    height: auto;
+  }
+  .about-life-mapping .life-mapping-stage {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
   .about-life-mapping .life-mapping-ambient-quote {
-    top: 20px;
-    left: 12px;
-    font-size: 1.05rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 12px 12px;
+    font-size: 0.9375rem;
     max-width: calc(100% - 24px);
   }
+}
+
+@media (max-width: 600px) {
   .life-mapping-detail-panel {
     width: 100%;
     max-height: calc(100dvh - max(20px, env(safe-area-inset-top)));
@@ -460,7 +478,9 @@ html[lang='en'] .about-life-mapping .life-mapping-network-canvas g.node text {
     border-bottom: 0;
     animation-name: life-mapping-sheet-enter;
     transform: translateY(var(--sheet-drag, 0px));
+    transition: transform 0.2s ease;
   }
+  .life-mapping-detail-panel.is-dragging { animation: none; transition: none; user-select: none; }
   .life-mapping-detail-panel[open].is-closing { animation-name: life-mapping-sheet-leave; }
   .life-mapping-story-header { padding: 22px 12px 0; }
   .life-mapping-sheet-grip {
